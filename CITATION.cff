@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the associated CMTW Vision paper."
+title: "CMTW v4 PVLDB Supplemental Artifact"
+version: "1.1-pvldb-submission"
+date-released: 2026-07-27
+type: software
+authors:
+  - family-names: Qu
+    given-names: Qianxi
+  - family-names: Liu
+    given-names: Yiran
+  - family-names: Liu
+    given-names: Yize
+  - family-names: Ye
+    given-names: Ning
+  - family-names: Luan
+    given-names: Qifu
+repository-code: "https://github.com/flytoee-rgb/cmtw-pvldb-artifact"
+url: "https://github.com/flytoee-rgb/cmtw-pvldb-artifact/releases/tag/v1.1-pvldb-submission"
+license: MIT

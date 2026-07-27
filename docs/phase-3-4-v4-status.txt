@@ -65,7 +65,9 @@ the definitive evaluation separates exact contract compliance from
 generation-end adherence. This is an experimental design correction, not a
 post-hoc result substitution.
 
-Next step
----------
-Generate the v4 R figure bundle, audit visual/semantic correspondence, then
-write a new CMTW-v4 Vision manuscript using the evidence hierarchy fixed here.
+Artifact state
+--------------
+COMPLETE. Frozen inputs, accepted results, exact-oracle scripts, plotting
+scripts, figure-source tables, and command-level provenance are published in
+the tagged supplemental artifact. No experiment was rerun during release
+packaging.

@@ -1,0 +1,13 @@
+CMTW synthetic data and result-table dedication
+================================================
+
+The original synthetic data, deterministic oracle labels, accepted JSON
+results, and figure-source tables in data/, results/, and figure-source-data/
+are made available under the Creative Commons CC0 1.0 Universal dedication.
+
+Legal code:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+This dedication does not change the licenses of the locally served language
+models named for reproducibility. No model weights are included in this
+artifact.

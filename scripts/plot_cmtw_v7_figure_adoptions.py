@@ -21,8 +21,9 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-SRC = ROOT / "docs" / "paper" / "figures" / "v4" / "source-data"
-OUT = ROOT / "docs" / "paper" / "figures" / "v4"
+SRC = ROOT / "figure-source-data"
+OUT = ROOT / "reproduced" / "figures"
+OUT.mkdir(parents=True, exist_ok=True)
 MM = 1 / 25.4
 
 TEAL = "#168A8A"
@@ -125,7 +126,9 @@ def fig4() -> None:
     # No enclosing frame: direct labels, exact counts, and a light grid carry the scale.
     for spine in axa.spines.values():
         spine.set_visible(False)
-    panel(axa, "a")
+    # Fixed figure-coordinate anchors keep a and b on the same vertical line.
+    fig.text(.07, .938, "a", fontsize=9, fontweight="bold",
+             color=INK, va="top")
     axa.text(1.30, 2.53, "CR = contamination recall", fontsize=5.0,
              ha="right", va="top", color=SLATE)
 
@@ -151,7 +154,8 @@ def fig4() -> None:
     axb.tick_params(which="both", length=0)
     for spine in axb.spines.values():
         spine.set_visible(False)
-    panel(axb, "b")
+    fig.text(.07, .446, "b", fontsize=9, fontweight="bold",
+             color=INK, va="top")
     cax = fig.add_axes([0.85, 0.115, 0.038, 0.32])
     cb = fig.colorbar(im, cax=cax, ticks=[0, .5, 1])
     cb.ax.set_yticklabels(["0%", "50%", "100%"], fontsize=5.8)
@@ -289,24 +293,28 @@ def fig5c() -> None:
     ax.set_ylim(0, 8.8)
     ax.axis("off")
     # Match the exact panel-label typography used by panels a and b.
-    ax.text(.02, 8.73, "c", fontsize=9, fontweight="bold", color=INK, va="top")
+    # Keep c on the same visual top-line as panel a in the adjacent PDF.
+    ax.text(.02, 8.58, "c", fontsize=9, fontweight="bold", color=INK, va="top")
+    # Lower the diagram as a unit so the panel label has a clean, independent
+    # corner and no longer touches the outer contract frame.
+    dy = -.24
 
     # CMTW is the outer contract.  A direct scope key states that the reference
     # substrate supplies T+C, while CMTW adds I+AnswerTrace; no inner frame can
     # accidentally claim the shared eligibility boundary.
-    rounded(ax, (.18, .34), (9.58, 8.04), face="none", edge=SLATE, lw=.72)
+    rounded(ax, (.18, .34 + dy), (9.58, 8.04), face="none", edge=SLATE, lw=.72)
     # Keep the scope label clearly inside the frame instead of sitting on its stroke.
-    ax.text(.54, 8.08, "CMTW contract layer", fontsize=5.7, color=SLATE,
+    ax.text(.54, 8.08 + dy, "CMTW contract layer", fontsize=5.7, color=SLATE,
             fontweight="bold", va="center")
-    ax.text(.58, 7.72, "reference substrate:  T + C", fontsize=5.0,
+    ax.text(.58, 7.72 + dy, "reference substrate:  T + C", fontsize=5.0,
             color=SLATE, fontweight="bold", va="center")
-    ax.text(5.26, 7.72, "CMTW adds:  I + AnswerTrace", fontsize=5.0,
+    ax.text(5.26, 7.72 + dy, "CMTW adds:  I + AnswerTrace", fontsize=5.0,
             color=TEAL, fontweight="bold", va="center")
 
     lanes = [
-        (6.78, "ASSERT", "I: persona\nadmission", "admitted\npersona fact", TEAL),
-        (4.98, "AS-OF QUERY", "T: valid-time\neligibility", "current typed\nstate", AMBER),
-        (3.18, "FORGET", "C: recorded\nclosure", "tombstones +\nderived IDs excluded", SLATE),
+        (6.78 + dy, "ASSERT", "I: persona\nadmission", "admitted\npersona fact", TEAL),
+        (4.98 + dy, "AS-OF QUERY", "T: valid-time\neligibility", "current typed\nstate", AMBER),
+        (3.18 + dy, "FORGET", "C: recorded\nclosure", "tombstones +\nderived IDs excluded", SLATE),
     ]
     for y, op, contract, outcome, color in lanes:
         rounded(ax, (.56, y-.39), (1.55, .78), text=op, fontsize=5.45, text_color=SLATE)
@@ -320,20 +328,20 @@ def fig5c() -> None:
         # Each output directly enters its own port in the same boundary.
         arrow(ax, (6.86, y), (7.26, y), color=color, lw=.78)
 
-    rounded(ax, (7.28, 2.58), (1.62, 4.59), face="#F2F5F6", edge=SLATE, lw=.88,
+    rounded(ax, (7.28, 2.58 + dy), (1.62, 4.59), face="#F2F5F6", edge=SLATE, lw=.88,
             text="eligibility\nboundary", fontsize=5.75, text_color=SLATE, weight="bold")
 
     # Boundary -> witness -> answer, a downstream answer lineage rather than an operator pipeline.
-    rounded(ax, (3.54, 1.12), (5.16, .72), face="white", edge=SLATE, lw=.78,
+    rounded(ax, (3.54, 1.12 + dy), (5.16, .72), face="white", edge=SLATE, lw=.78,
             text="AnswerTrace", fontsize=5.65, text_color=SLATE, weight="bold")
-    ax.text(6.13, 1.30,
+    ax.text(6.13, 1.30 + dy,
             "evidence IDs  |  as-of predicate  |  invariant  |  tombstone set",
             ha="center", va="center", fontsize=4.55, color=SLATE, zorder=4)
-    arrow(ax, (8.09, 2.56), (8.09, 1.86), color=SLATE, lw=.82)
-    arrow(ax, (6.13, 1.10), (6.13, .66), color=SLATE, lw=.76)
-    ax.text(6.13, .51, "answer", ha="center", va="center", fontsize=6.0,
+    arrow(ax, (8.09, 2.56 + dy), (8.09, 1.86 + dy), color=SLATE, lw=.82)
+    arrow(ax, (6.13, 1.10 + dy), (6.13, .66 + dy), color=SLATE, lw=.76)
+    ax.text(6.13, .51 + dy, "answer", ha="center", va="center", fontsize=6.0,
             color=TEAL, fontweight="bold")
-    ax.text(9.58, .51, "recorded derivatives only", ha="right", va="center",
+    ax.text(9.58, .51 + dy, "recorded derivatives only", ha="right", va="center",
             fontsize=4.45, color=SLATE, style="italic")
     export(fig, "cmtw-v7-fig5c-contract-stack")
 

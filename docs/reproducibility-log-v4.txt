@@ -1,6 +1,13 @@
 C8.1 / CMTW-v4 reproducibility log
 ==================================
 
+Packaged-artifact path note (release 1.1)
+-----------------------------------------
+This file preserves commands and paths exactly as recorded in the full research
+workspace. In the public artifact, results/v4/ maps to results/, and
+docs/paper/figures/v4/source-data/ maps to figure-source-data/. The runnable
+release commands in README.txt use the packaged paths.
+
 This log begins after the immutable v3-pre-v4 snapshot. Every v4 command,
 fixed seed, local model identifier, artifact hash, and accepted snapshot must
 be appended here.

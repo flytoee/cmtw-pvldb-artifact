@@ -1,4 +1,4 @@
-"""CMTW-v6 publication figures: Python/Matplotlib-only visual-argument rebuild.
+"""CMTW publication figures: Python/Matplotlib-only visual-argument rebuild.
 
 This script reads frozen accepted JSON artifacts only. It performs no inference,
 data generation, or statistical re-estimation. Discrete seed-level values stay
@@ -39,8 +39,8 @@ plt.rcParams.update(
 )
 
 ROOT = FilePath(__file__).resolve().parents[1]
-OUT = ROOT / "docs" / "paper" / "figures" / "v4"
-SRC = OUT / "source-data"
+OUT = ROOT / "reproduced" / "figures"
+SRC = ROOT / "reproduced" / "figure-source-data"
 OUT.mkdir(parents=True, exist_ok=True)
 SRC.mkdir(parents=True, exist_ok=True)
 
@@ -98,11 +98,12 @@ def ribbon(ax, x0, y0, h0, x1, y1, h1, color, alpha=0.78):
     ax.add_patch(PathPatch(MplPath(verts, codes), facecolor=color, edgecolor="none", alpha=alpha, zorder=1))
 
 
-def node(ax, x, y, w, h, label, face, text=COL["ink"], fs=5.7):
+def node(ax, x, y, w, h, label, face, text=COL["ink"], fs=5.7, linespacing=.93):
     box = FancyBboxPatch((x, y - h / 2), w, h, boxstyle="round,pad=0.01,rounding_size=0.018",
                          facecolor=face, edgecolor=COL["ink"], linewidth=0.45, zorder=3)
     ax.add_patch(box)
-    ax.text(x + w / 2, y, label, ha="center", va="center", fontsize=fs, color=text, zorder=4, linespacing=0.93)
+    ax.text(x + w / 2, y, label, ha="center", va="center", fontsize=fs,
+            color=text, zorder=4, linespacing=linespacing)
 
 
 def discrete_cloud(
@@ -169,7 +170,7 @@ def discrete_cloud(
 
 
 def fig3():
-    e1 = read_json("results/v4/e1_structural_20seeds_mistral_r1.json")
+    e1 = read_json("results/e1_structural_20seeds_mistral_r1.json")
     latencies = np.array([r["mean_recon_seconds"] for r in e1["seed_rows"]], dtype=float)
     with open(SRC / "fig3-v6-rebuild-latency.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
@@ -184,7 +185,9 @@ def fig3():
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
-    panel_label(ax, "a")
+    # Use one figure-coordinate x anchor for both stacked panel labels.
+    fig.text(.035, .97, "a", fontsize=9, fontweight="bold",
+             color=COL["ink"], va="top")
 
     node(ax, 0.018, 0.67, 0.115, 0.18, "withdrawn\nepisode", COL["red_light"], fs=5.7)
     node(ax, 0.018, 0.31, 0.115, 0.18, "safe route\nfact", COL["teal_light"], fs=5.7)
@@ -286,7 +289,7 @@ def fig3():
 
 def fig3_single():
     """Single-column reflow of Figure 3; values and visual grammar are unchanged."""
-    e1 = read_json("results/v4/e1_structural_20seeds_mistral_r1.json")
+    e1 = read_json("results/e1_structural_20seeds_mistral_r1.json")
     latencies = np.array([r["mean_recon_seconds"] for r in e1["seed_rows"]], dtype=float)
 
     fig = plt.figure(figsize=(3.50, 3.62))
@@ -297,7 +300,9 @@ def fig3_single():
     ax.set_xlim(0, 1)
     ax.set_ylim(.36, 1.02)
     ax.axis("off")
-    panel_label(ax, "a")
+    # Use one figure-coordinate x anchor for both stacked panel labels.
+    fig.text(.035, .97, "a", fontsize=9, fontweight="bold",
+             color=COL["ink"], va="top")
 
     node(ax, .01, .79, .16, .12, "withdrawn\nepisode", COL["red_light"], fs=5.2)
     node(ax, .01, .58, .16, .12, "safe route\nfact", COL["teal_light"], fs=5.2)
@@ -315,19 +320,21 @@ def fig3_single():
         ribbon(ax, .395, .675, .055, policy_x, y, .060, COL["grey_dark"], alpha=.25)
         node(ax, policy_x, y, policy_w, .105, label, face, fs=5.0)
 
+    # Give the two outcome rows for each policy a visibly separate baseline.
     outcomes = [
-        (.86, .90, "withdrawn eligible\n10 / 24 probes", COL["red_light"], COL["red"]),
-        (.86, .82, "safe fact retained\n8 / 8", COL["teal_light"], COL["teal"]),
-        (.67, .71, "withdrawn blocked\n0 / 24 probes", COL["teal_light"], COL["teal"]),
-        (.67, .63, "safe fact over-deleted\n0 / 8", "#E8EBEF", COL["grey_dark"]),
-        (.48, .52, "withdrawn blocked\n0 / 24 probes", COL["teal_light"], COL["teal"]),
-        (.48, .44, "safe fact retained\n8 / 8", COL["teal_light"], COL["teal"]),
+        (.86, .91, "withdrawn eligible\n10 / 24 probes", COL["red_light"], COL["red"]),
+        (.86, .81, "safe fact retained\n8 / 8", COL["teal_light"], COL["teal"]),
+        (.67, .72, "withdrawn blocked\n0 / 24 probes", COL["teal_light"], COL["teal"]),
+        (.67, .62, "safe fact over-deleted\n0 / 8", "#E8EBEF", COL["grey_dark"]),
+        (.48, .53, "withdrawn blocked\n0 / 24 probes", COL["teal_light"], COL["teal"]),
+        (.48, .43, "safe fact retained\n8 / 8", COL["teal_light"], COL["teal"]),
     ]
     out_x, out_w = .69, .295
     for policy_y, out_y, label, face, flow_col in outcomes:
         ribbon(ax, policy_x + policy_w, policy_y, .043, out_x, out_y, .038,
                flow_col, alpha=.62)
-        node(ax, out_x, out_y, out_w, .063, label, face, fs=4.35)
+        node(ax, out_x, out_y, out_w, .078, label, face, fs=4.50,
+             linespacing=1.34)
 
     ax.text(.305, .995, "one recorded derivative", ha="center", va="center",
             fontsize=4.8, color=COL["muted"])
@@ -383,7 +390,8 @@ def fig3_single():
               color=COL["ink"], clip_on=False, linewidth=.75)
     ax_r.plot((-d, +d), (-d, +d), transform=ax_r.transAxes,
               color=COL["ink"], clip_on=False, linewidth=.75)
-    fig.text(.035, .235, "b", fontsize=9, fontweight="bold", color=COL["ink"])
+    fig.text(.035, .235, "b", fontsize=9, fontweight="bold",
+             color=COL["ink"], va="top")
     fig.text(.555, .012,
              "local selective re-consolidation time per persona (s; broken axis)",
              ha="center", fontsize=5.25, color=COL["ink"])
@@ -392,9 +400,9 @@ def fig3_single():
 
 def admission_seed_rows():
     files = [
-        "results/v4/e4_admission_20seeds_mistral_r1.json",
-        "results/v4/e4_admission_20seeds_lfm2_r1.json",
-        "results/v4/e4_admission_20seeds_llama18b_r1.json",
+        "results/e4_admission_20seeds_mistral_r1.json",
+        "results/e4_admission_20seeds_lfm2_r1.json",
+        "results/e4_admission_20seeds_llama18b_r1.json",
     ]
     seed_rows = []
     case_rows = []
@@ -529,8 +537,8 @@ def fig4():
 
 
 def fig5():
-    e2 = read_json("results/v4/e2_e5_contract_suite_20seeds_r2.json")
-    adherence = read_json("results/v4/e2_full_contract_3models_analysis_r3.json")
+    e2 = read_json("results/e2_e5_contract_suite_20seeds_r2.json")
+    adherence = read_json("results/e2_full_contract_3models_analysis_r3.json")
     agg = {x["configuration"]: x["overall"]["mean"] for x in e2["e2_factorial"]["aggregate"]}
 
     def value(i, c, t):
@@ -651,6 +659,7 @@ def fig5():
 
 if __name__ == "__main__":
     fig3()
+    fig3_single()
     fig4()
     fig5()
-    print(f"Wrote Matplotlib CMTW-v6 figures to {OUT}")
+    print(f"Wrote Matplotlib CMTW publication figures to {OUT}")

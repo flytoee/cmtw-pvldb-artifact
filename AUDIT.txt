@@ -26,6 +26,9 @@ Claim audit:
   measurable recomputation cost, not a three-way correctness trade-off.
 
 Release audit:
-- generated JSON retains its existing CC0 metadata;
-- public code license: author decision required;
-- stable public repository/DOI: author decision required.
+- generated JSON retains its existing CC0-1.0 metadata;
+- Python source license: MIT, recorded in LICENSE.txt;
+- stable tagged snapshot:
+  https://github.com/flytoee-rgb/cmtw-pvldb-artifact/releases/tag/v1.1-pvldb-submission;
+- release ZIP uses POSIX "/" member paths for Windows, Linux, and macOS
+  extraction.
