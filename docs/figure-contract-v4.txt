@@ -1,0 +1,230 @@
+C8.1 / CMTW-v4 figure contract
+================================
+
+Backend
+-------
+R only: ggplot2 + patchwork. Exports will be SVG, PDF, TIFF (600 dpi), and a
+PNG preview from the same R code. Quantitative source tables will be written
+beside each figure script. No Python graphics backend will be used.
+
+Figure 3 — Recorded derivative deletion has a three-way systems trade-off
+---------------------------------------------------------------------------
+Core conclusion:
+  A withdrawal is not a text delete: preserving a coarse materialized view
+  leaves a reachable forgotten root; invalidating the whole view protects the
+  withdrawal but discards co-consolidated safe context; selective
+  re-consolidation restores the safe context while closing recorded lineage.
+Archetype: asymmetric mixed-modality figure.
+Hero evidence:
+  Answer-level E1 triangle (leakage, retained-fact accuracy, local rebuild
+  time) from the accepted eight-persona snapshot.
+Validation evidence:
+  20-seed structural audit of real local summaries and embeddings.
+Panel map:
+  a. derivation-to-tombstone trace for one synthetic route (schematic from
+     recorded lineage, not a claim about unrecorded neural influence);
+  b. three-strategy deletion/retention matrix with exact n labels;
+  c. a reconstruction-cost density ribbon with an embedded 20-seed run strip.
+     This replaces seed dots: it exposes the observed cost distribution while
+     retaining the 160/160 closure and safe-retention certificate as direct
+     text.
+Reviewer risk:
+  Do not describe this as neural unlearning or removal of unrecorded shared
+  representation. The legend must say recorded semantic derivatives.
+
+Figure 4 — Persona admission is a calibration problem, not a binary filter
+-----------------------------------------------------------------------------
+Core conclusion:
+  Given-invariant admission catches explicit and gradual persona contamination,
+  but practical utility depends on avoiding false quarantine of evolving
+  relationship state; the trade-off varies by local generator.
+Archetype: quantitative grid.
+Hero evidence:
+  Recall-versus-false-quarantine paired point/interval plot for Mistral, LFM2,
+  and Llama, each over 20 fixed seeds.
+Validation evidence:
+  Case-type matrix: direct conflict, gradual conflict, legitimate state,
+  unrelated assertion.
+Panel map:
+  a. an admission-risk landscape (x = false-quarantine, y = contamination
+     recall) with labelled bootstrap confidence capsules, rather than a
+     scatter plot. The shaded regions have a semantic reading: usable,
+     over-quarantine, leakage, and failure-to-screen.
+  b. small-multiple dot/interval matrix by case type;
+  c. design boundary strip: given invariant -> admission decision -> typed
+     state path, explicitly separating identity from relationship evolution.
+Reviewer risk:
+  State that this is enforcement of supplied invariants, not automatic persona
+  discovery. Keep model names neutral in paper prose.
+
+Figure 5 — Eligibility precedes ranking and exposes a DB capability boundary
+-----------------------------------------------------------------------------
+Core conclusion:
+  Structured valid-time selection and recorded cascade are necessary building
+  blocks, but neither alone defines natural-language persona admission.
+Archetype: schematic-led composite.
+Hero evidence:
+  E3 reference baseline and E5 high-similarity stale decoy trace.
+Validation evidence:
+  20-seed 2^3 exact contract-execution matrix, labelled as a compliance check,
+  not a model-performance leaderboard.
+Panel map:
+  a. rank-first decoy versus eligibility-first trace;
+  b. three concentric adherence arcs with bootstrap confidence arcs; the
+     common displayed scale is 50--100%, and direct labels retain the exact
+     mean and interval;
+  c. a set-inclusion contract lattice: temporal+recorded-cascade is the
+     structured core, and CMTW adds natural-language admission and an
+     answer-level witness. This replaces a yes/no capability table.
+Reviewer risk:
+  Do not make the deterministic oracle matrix a headline empirical result;
+  its purpose is to make the semantics auditable.
+
+Visual standards
+----------------
+- One quiet neutral family, teal for eligible/closed state, amber for valid
+  time, restrained red for contamination or withdrawn evidence.
+- Hero panels dominate; panel labels are lower-case bold letters.
+- Direct labels and exact n; no 3D, decorative chord, bar-chart, simple
+  dot-plot, or line-chart substitutes when a relationship structure can be
+  shown directly.
+- Every quantitative panel cites its seed count, interval definition, and
+  source-data file in its caption or legend.
+
+
+V5 redraw override (2026-07-26)
+================================
+
+Backend and export
+------------------
+The user selected Python/Matplotlib for this redraw. All drawing, previewing,
+export and visual QA in this iteration use Python only. The primary outputs are
+vector PDF, with editable SVG and 600-dpi TIFF/PNG sidecars. Prior R figures
+remain archived but are not reused as drawing or preview artifacts.
+
+Core conclusion
+---------------
+Companion-memory correctness is a lifecycle-lineage problem: a coarse
+derivative can leak, be over-deleted, or be selectively rebuilt; admission and
+generation evidence then expose separate, auditable contract boundaries.
+
+Panel map
+---------
+Figure 3 (schematic-led quantitative composite):
+  a. Three Sankey-style semantic-lineage small multiples. Eight
+     co-consolidated persona routes feed a coarse view and end in leakage,
+     over-deletion, or verified retention. Ribbons denote semantic derivation,
+     not conserved population mass; exact route counts are direct labels.
+  b. Compact 20-seed reconstruction-time boxplot with mean +/- SD.
+
+Figure 4 (quantitative grid):
+  a. Bubble calibration map: x=false-quarantine, y=contamination recall,
+     bubble area=n=20 fixed seeds, bootstrap 95% confidence whiskers. The
+     usable region is upper-left (low false-quarantine; high recall).
+  b. Model-by-input-type accuracy heatmap with direct values and shared
+     colourbar.
+
+Figure 5 (quantitative grid plus vector concept panel):
+  a. T-stratified 2x2 factorial compliance heatmaps with shared colourbar.
+  b. Horizontal generator-adherence bars with bootstrap 95% CI whiskers and a
+     0.50--1.00 display range.
+  c. TikZ derivation/contract lattice: the structured temporal+cascade core
+     leads to CMTW only after adding natural-language admission and an
+     answer-level witness.
+
+Evidence and review risks
+-------------------------
+- Palette: red=leaked/unsafe, teal=eligible/verified, grey=neutral or
+  over-deleted, amber=temporal/rebuild cost.
+- Direct n labels; bootstrap intervals only where measured; exact semantic
+  audits remain visibly labelled as compliance checks.
+- All programmatic panels draw accepted JSON results; no value is invented.
+- Fig.3's Sankey-style ribbons must never be described as population flow or
+  neural-unlearning evidence. The closure claim remains limited to recorded
+  semantic derivatives.
+
+
+V6 visual-argument rebuild (2026-07-26)
+========================================
+
+Backend and evidence boundary
+-----------------------------
+Python/Matplotlib remains the exclusive plotting backend. This rebuild reads
+only the frozen accepted JSON artifacts and does not run inference, regenerate
+data, or add observations. Primary output is vector PDF, with editable SVG and
+600-dpi TIFF/PNG sidecars. Fig. 5c remains vector TikZ.
+
+Figure 3 -- one branching lineage, then an honest broken-axis cost distribution
+-------------------------------------------------------------------------------
+Core conclusion:
+  One co-consolidated derivative creates three visibly different policy
+  outcomes: leakage when preserved, collateral loss when invalidated wholesale,
+  and recorded closure plus retention after selective rebuilding.
+Panel map:
+  a. One connected semantic-lineage map. Withdrawn and retained content enter
+     a shared coarse summary, which fans into the three deletion policies and
+     their policy-specific outcomes. Ribbons encode recorded semantic
+     derivation only; they do not encode population mass or neural influence.
+  b. A broken-axis empirical cost glyph. The left axis exposes the 19 observed
+     seed means in 3.60--3.78 s as a compact distribution envelope; the right
+     axis shows the single 6.263 s observation as a labelled isolated capsule.
+     No scatter-marker outlier or uninterrupted empty axis is used.
+Final size:
+  Double column, 183 mm wide. Panel (a) is the hero panel; panel (b) is a
+  shallow validation strip.
+Reviewer risk:
+  The 20-seed file certifies structural provenance and exact-string derivative
+  properties, not a 20-seed answer-leak distribution. The figure must preserve
+  that method boundary.
+
+Figure 4 -- discrete paired rainclouds for admission calibration
+----------------------------------------------------------------
+Core conclusion:
+  Given-invariant enforcement has a model-dependent trade-off between catching
+  contamination and admitting safe relationship evolution.
+Panel map:
+  a. Paired horizontal discrete rainclouds for contamination recall and safe
+     admission (1 - false quarantine), reconstructed per seed from the raw E4
+     records. Each metric has two trials per seed and therefore support only at
+     0, 0.5, and 1. Frequency islands and exact-count rain ticks are used;
+     continuous KDE is prohibited.
+  b. The existing model-by-input-type direct-value heatmap, polished with one
+     shared, labelled colourbar.
+Final size:
+  Single column, 89 mm wide.
+Reviewer risk:
+  The 20 seeds are synthetic route instances, not people or stochastic
+  decoding replicates. This evaluates execution of supplied invariants, not
+  invariant discovery.
+
+Figure 5 -- factorial matrix, discrete adherence distributions, contract stack
+-------------------------------------------------------------------------------
+Core conclusion:
+  Typed valid-time eligibility is the substrate on which admission and recorded
+  closure become jointly effective; the generator remains a separate consumer
+  of the eligible evidence surface.
+Panel map:
+  a. Keep the T-stratified 2^3 exact-obligation heatmaps, with a shared
+     colourbar and direct values.
+  b. Replace horizontal bars by horizontal discrete frequency silhouettes over
+     the exact 20 seed values. Use rain ticks, the accepted bootstrap 95%
+     interval, and a direct mean label; do not smooth the discrete values into
+     a continuous density.
+  c. Replace the crossing lattice by a no-crossing lifecycle contract stack:
+     write-time I, retrieve-as-of T, and withdrawal-time C are parallel
+     operation-specific gates feeding a single eligibility boundary and
+     AnswerTrace witness. The figure must not imply the false serial order
+     I -> T -> C or physical erasure of unrecorded neural influence.
+Final size:
+  Single column, 89 mm wide; the TikZ panel is aligned to the quantitative
+  panel above.
+
+Unified visual grammar
+----------------------
+- Teal = eligible/retained/correct; restrained red = withdrawn/leaked/blocked;
+  amber = re-consolidation or temporal action; slate/grey = neutral/collateral.
+- No panel title is embedded in the artwork. Panel letters, axes, direct
+  labels, legends, and shared colourbars remain self-sufficient.
+- Avoid generic bars, simple connected lines, and decorative point charts.
+- Discrete observations stay discrete; no fabricated KDE or pseudo-sample.
+- All text remains editable in PDF/SVG/TikZ and legible at final print size.

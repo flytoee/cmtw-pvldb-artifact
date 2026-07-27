@@ -1,0 +1,394 @@
+C8.1 / CMTW-v4 reproducibility log
+==================================
+
+This log begins after the immutable v3-pre-v4 snapshot. Every v4 command,
+fixed seed, local model identifier, artifact hash, and accepted snapshot must
+be appended here.
+
+2026-07-26 — Freeze
+-------------------
+Command family:
+  Copy-Item current cmtw_vldb_vision.tex, cmtw_vldb_vision.pdf,
+  cmtw_vldb_vision_zh.txt, and cmtw-references.bib into
+  docs/paper/frozen/cmtw_v3_pre_v4_20260726/.
+
+Snapshot hashes:
+  cmtw_vldb_vision.pdf
+  9E95B92C4344EDD2422F62B0D1D3AA8523D91CD5230F0D84106AF33402F677A1
+  cmtw_vldb_vision.tex
+  8542E2A6158A2BB5AD5677DEE813CD865E687A9B6992858D6F12BBF8B3D23A63
+  cmtw_vldb_vision_zh.txt
+  8DE25BBBF2220BB9D9E95B0A6792AAAAFC079F1B057F82428F2714EFECE653BD
+  cmtw-references.bib
+  6C5D29AFA19787612DDF0A59D49E9F8087010119121C3980BEC925432BD45BA1
+
+2026-07-26 — E0 local capability audit
+---------------------------------------
+Commands:
+  Invoke-RestMethod http://127.0.0.1:1234/v1/models
+  POST http://127.0.0.1:1234/v1/embeddings
+    model=text-embedding-nomic-embed-text-v1.5
+    input=["private route canary: ember-lattice","unrelated garden schedule"]
+  POST http://127.0.0.1:1234/v1/chat/completions
+    model=mistralai_ministral-3-14b-instruct-2512
+    temperature=0; max_tokens=8
+  rg exact-name IP audit over data/, scripts/, results/.
+
+Results:
+  PASS. Local embeddings endpoint returned two 768-dimensional vectors.
+  PASS. Mistral returned "local-ok" deterministically for the smoke prompt.
+  PASS. Exact restricted-character audit returned zero matches.
+  PASS. Data, local baseline, and automatic-evaluation feasibility gates.
+
+Selected local artifacts:
+  Mistral Q4_K_S SHA-256
+  84B45104CB503C19FEFA9DCEED3FB358B7EA1263BEFFDD7D4EF2F725221CA761
+  LFM2 Q4_K_M SHA-256
+  EB4D2D4D4E61B795726C2F526C4434CA6BC725AD7A783691B58681F025CF58F2
+  Llama-3.2 8x3B MoE Q4_K_S SHA-256
+  85E6881A63A70354ACE145458A81F5F5104BD14712194A6729A77FAD249EA90F
+  Nomic Embed Text v1.5 Q4_K_M SHA-256
+  D4E388894E09CF3816E8B0896D81D265B55E7A9FFF9AB03FE8BF4EF5E11295AC
+
+Constraint audit:
+  All planned inference is localhost LM Studio only. No cloud API, training,
+  CUDA/A40/multi-GPU work, human subject, or restricted-character quantification
+  is authorized.
+
+2026-07-26 — E1 pilot (accepted run r6)
+-----------------------------------------
+Command:
+  python scripts\run_cmtw_v4_e1_pilot.py --seed 20260726 --personas 2
+    --endpoint http://127.0.0.1:1234
+    --model mistralai_ministral-3-14b-instruct-2512
+    --embedding-model text-embedding-nomic-embed-text-v1.5
+    --checkpoint-every 12
+
+Accepted artifacts:
+  data/v4/pilots/cmtw_v4_e1_pilot_seed20260726_p2_r6.json
+  BDACAEB2C15580752DE0E80C34C190952CE2D1A1A1201BE8EDC077BCFF38C7B2
+  results/v4/pilots/e1_pilot_seed20260726_p2_mistral_r6.json
+  9656497042955626AA3F2A0852C5A89F20D4398B64418314C58855F84241A85C
+
+Results (pilot only; not a paper-level estimate):
+  2 original synthetic personas; 72 answer-level records; complete=true.
+  Materialized summaries retained both canaries and safe route identifiers: 2/2.
+  Old-view preservation: structural exposure 100%; canary answer leakage 50%.
+  Whole-view invalidation: structural exposure 0%; canary answer leakage 0%;
+    retained-fact answer accuracy 0%.
+  Selective re-consolidation: structural exposure 0%; canary answer leakage 0%;
+    retained-fact answer accuracy 100%; mean local re-consolidation time 22.859 s.
+
+Development audit retained but excluded from accepted results:
+  r4 used a safe identifier that the local summarizer semantically preserved but
+  reordered, exposing an overly strict lexical retention scorer. r6 replaced it
+  with a deterministic hyphenated route identifier and separately records view
+  retention and answer retention. No r4 number may be reported as evidence.
+
+2026-07-26 — E1 8-persona materialized-derivative snapshot (accepted)
+---------------------------------------------------------------------
+Command:
+  python scripts\run_cmtw_v4_e1_pilot.py --seed 20260726 --personas 8
+    --endpoint http://127.0.0.1:1234
+    --model mistralai_ministral-3-14b-instruct-2512
+    --embedding-model text-embedding-nomic-embed-text-v1.5
+    --timeout 180 --checkpoint-every 24
+
+Batching protocol:
+  original summaries (Mistral) -> original embeddings (Nomic) -> selective
+  re-consolidated summaries (Mistral) -> re-consolidated embeddings (Nomic) ->
+  query embeddings (Nomic) -> answer probes (Mistral). Exactly one local
+  inference request was active at any time; no cloud endpoint was contacted.
+
+Accepted artifacts:
+  data/v4/snapshots/cmtw_v4_e1_seed20260726_p8_batch_r1.json
+  76909CF248F0457C04CF1B9C50E99D2FCC399B0A271CA4A93FC2A045B90B55CF
+  results/v4/snapshots/e1_seed20260726_p8_mistral_batch_r1.json
+  A8CD3F340F3AF7E3427E7794EE87E8BCCAA3337F14554E32FA2A4F8E2030EE10
+
+Results (single fixed-seed E1 snapshot; subsequent E2 supplies seed-level
+statistics):
+  8 original synthetic personas; 288 answer-level records; complete=true.
+  Original summaries retained both the withdrawn canary and retained identifier:
+  8/8. Re-consolidated summaries removed the canary while retaining the safe
+  identifier: 8/8.
+  Preserve-old-view: structural exposure 100%; answer leakage 10/24 per
+  modality; retained-fact answer accuracy 8/8 per modality.
+  Invalidate-whole-view: structural exposure 0/8; answer leakage 0/24;
+  retained-fact answer accuracy 0/8 per modality.
+  Selective re-consolidation: structural exposure 0/8; answer leakage 0/24;
+  retained-fact answer accuracy 8/8 per modality; mean local reconstruction
+  time 5.948 s per persona.
+
+Acceptance audit:
+  PASS. Exact restricted-character scans over data/v4, results/v4, and the E1
+  prompt/runner source returned zero matches for Chinese and English restricted
+  names. The result concerns recorded semantic materialized derivatives only;
+  it is not a neural-unlearning claim.
+
+2026-07-26 — E2--E5 multi-seed suite and local cross-checks (accepted)
+---------------------------------------------------------------------
+Deterministic contract suite command:
+  python scripts\run_cmtw_v4_contract_suite.py --seed-start 20260727
+    --seeds 20 --personas 8
+    --data-output data/v4/cmtw_v4_contract_suite_20seeds_r2.json
+    --results-output results/v4/e2_e5_contract_suite_20seeds_r2.json
+
+Exact contract-suite artifacts:
+  data/v4/cmtw_v4_contract_suite_20seeds_r2.json
+  8D407067D51658B6C6139818E48A023D3E90B10A5B6752D3866C4BDB10A66EB7
+  results/v4/e2_e5_contract_suite_20seeds_r2.json
+  33178A6D4DC97AEF39B261A72E5FE60331DD744A0324BD4847419A6F43B55965
+
+E2 protocol and result boundary:
+  20 fixed seeds x 8 original personas x 32 balanced oracle queries = 5,120
+  exact contract queries. All 2^3 I/C/T configurations are evaluated by the
+  operational oracle. Because the supplied contract evaluator is deterministic,
+  its zero seed variance is reported as a compliance check, not as generator
+  robustness or a model-performance leaderboard.
+
+E3 and E5 boundaries:
+  The temporal-relational reference with valid-time selection and recorded
+  cascade matches CMTW on state and recorded-forget queries, as expected. It
+  has no natural-language PersonaInvariant admission capability. In the
+  high-similarity stale-decoy trace, rank-first selection chooses the stale
+  recap in 160/160 cases (and is correct in 0/160); typed eligibility selects
+  the current state in 160/160
+  cases. These are semantic capability demonstrations, not SOTA claims.
+
+E4 given-invariant natural-language admission probe:
+  Command family:
+    python scripts\run_cmtw_v4_admission_llm.py --seed-start 20260727
+      --seeds 20 --model <local-model> --checkpoint-every 20
+  Each model receives the same 80 inputs: 20 direct contradictions, 20 gradual
+  contradictions, 20 legitimate relationship-state revisions, and 20 unrelated
+  assertions. The invariant is explicitly supplied; this probes enforcement,
+  not invariant discovery.
+  Mistral: contamination recall 1.000; false-quarantine 0.300; accuracy 0.850.
+  LFM2: contamination recall 1.000; false-quarantine 0.925; accuracy 0.5375.
+  Llama 3.2 8x3B MoE local build: contamination recall 0.000;
+    false-quarantine 0.000; accuracy 0.500.
+  Interpretation: constraint-language calibration and the identity/state
+  boundary are an open systems problem; the three results are retained
+  separately and are never averaged.
+
+E2 generation-end full-contract probe:
+  Command family:
+    python scripts\run_cmtw_v4_llm_stratified.py --seed-start 20260727
+      --seeds 20 --only-full --model <local-model> --checkpoint-every 20
+  The full I+C+T evidence surface provides four fixed answer probes per seed.
+  Mistral: 1.000 seed mean. LFM2: 0.5875 (bootstrap 95% [0.5375, 0.6375]).
+  Llama 3.2 8x3B MoE local build: 0.6875 (bootstrap 95% [0.6375, 0.7250]).
+  These scores characterize local generator adherence to a supplied evidence
+  surface, not the correctness guarantee of the memory contract.
+
+Generator-probe development audit (excluded from evidence):
+  Two all-configuration runs (e2_stratified_20seeds_mistral_r1 and r2) asked a
+  model to reproduce intentionally unsafe counterfactual evidence. Mistral
+  sometimes refused that evidence due to its own response policy. The runs are
+  retained as prompt-measurement artifacts, excluded from all claims, and led
+  to the final separation between exact 2^3 contract compliance and
+  full-contract generator adherence.
+
+Accepted multi-seed E1 structural audit:
+  python scripts\run_cmtw_v4_e1_structural_multiseed.py --seed-start 20260727
+    --seeds 20 --personas 8 --timeout 180 --checkpoint-every 20
+    --data-output data/v4/cmtw_v4_e1_structural_20seeds_r1.json
+    --results-output results/v4/e1_structural_20seeds_mistral_r1.json
+  The runner batches all 160 Mistral materializations, then Nomic embeddings,
+  then all 160 Mistral re-consolidations, then Nomic embeddings. One local
+  inference request is active at any time.
+  20-seed mean (standard deviation): canary materialized 1.000 (0.000), safe
+  identifier materialized 1.000 (0.000), re-consolidated canary-free 1.000
+  (0.000), re-consolidated safe identifier 1.000 (0.000), old-view structural
+  exposure 1.000 (0.000), whole-view invalidation exposure 0.000 (0.000),
+  selective-reconsolidation exposure 0.000 (0.000), local rebuild time
+  3.8203 s (0.5757) per persona.
+  data/v4/cmtw_v4_e1_structural_20seeds_r1.json
+  D8E5379FF821B5565AE965178E3EAD36B91547AF3B2D7D6D426FCD9D5F1A6D9F
+  results/v4/e1_structural_20seeds_mistral_r1.json
+  65E6F9FEE0AA6A3440B6D8CDC8FC8C3D258005245028B52C0F795CF19195FB39
+
+Local result hashes:
+  e2_full_contract_20seeds_mistral_r3.json
+  F810A2ECDA14857E2DCFFCF8C68604F6E04D2E4BB15C4CFD510714A1638F4649
+  e2_full_contract_20seeds_lfm2_r3.json
+  4746746B4D3B47EAC51CD6CAAD151388397D9984ED8F4EB077D3AAA4EF7F1240
+  e2_full_contract_20seeds_llama18b_r3.json
+  520F323BE3A6E1AE20A59EA7A96050F3EADB46F2517D0EF9576FCCC1E8CFBF07
+  e2_full_contract_3models_analysis_r3.json
+  6114F5E9045EA36A89FF133C5B0FA8F07927F73069203572D67A4490BE776173
+  e4_admission_20seeds_mistral_r1.json
+  5B3A5385524AF6341B9F356E2875454A09A661D3F361AEB40366FC74C75E8060
+  e4_admission_20seeds_lfm2_r1.json
+  B1B4176E5CC3D9000C89A96709C8A29031272F1BDBFC5FE86843A9765C9D6E00
+  e4_admission_20seeds_llama18b_r1.json
+  3E8E65647FCF9EBE086AEA0B5631D706432AAB0E6D740148EC4193C7E64A4E03
+  e4_admission_3models_analysis_r1.json
+  2D776A945B0C5280CD71697FEAC8D5DDE00B1408CA0D9A52E6D8F66A650DE7BD
+
+Final hard-constraint audit for this experimental batch:
+  PASS. All inference used LM Studio at 127.0.0.1:1234. No cloud API, training,
+  CUDA/A40/multi-GPU execution, or human subject was used. Exact Chinese and
+  English restricted-character scans over new data, results, and prompt source
+  files returned zero matches.
+
+Manuscript build and final static audit (2026-07-26, Asia/Shanghai):
+  Local build command:
+    PATH=C:\Program Files\Git\usr\bin;%PATH%; latexmk -pdf
+      -interaction=nonstopmode -halt-on-error cmtw_v4_vision.tex
+  Rationale: MiKTeX's latexmk used the already-installed Git Perl 5.38.2;
+  no model, dataset, or experiment was executed during manuscript production.
+  Rendered with MiKTeX pdftoppm at 130 dpi and visually inspected page 1,
+  the figure pages, and page 6. Result: six manuscript pages; references start
+  on page 7; 71 bibliography entries; no unresolved citations or references;
+  no overfull boxes in the final log.
+  Final terminology and Figure 2 correction: all manuscript and in-figure
+  operator mentions use the executable form FORGET <episode> CASCADE; no
+  ellipsis-form operator remains.
+  docs/paper/cmtw_v4_vision.tex
+  6822BD31C586BE2DF6A01C5C71B7FB8B6643A1B3569A52E2517427718027E228
+  docs/paper/cmtw_v4_vision.pdf
+  BBA3B069E5DDA49EBAD0FAD849106D55DE6314D10E100AF72B679EAFB26AB026
+  docs/paper/cmtw_v4_vision_zh.txt
+  50646DA354572AF428BA7051DE9761EE2466E0F593D0BB445C8929409476165C
+  bib/cmtw-references-v4.bib
+  6C5D29AFA19787612DDF0A59D49E9F8087010119121C3980BEC925432BD45BA1
+  Final manuscript-label audit: PASS. Submission prose uses neutral model
+  labels; raw result provenance retains the exact served-model identifiers.
+
+Figure redesign and terminology correction (2026-07-26, Asia/Shanghai):
+  R-only redraw command:
+    Rscript scripts/plot_cmtw_v4_figures.R
+  The redraw consumes the pre-existing accepted E1/E2/E4 result JSON only; no
+  local model, data generator, or experiment was run. Figure 3b now uses a
+  reconstruction-cost density ribbon plus ordered seed strip; Figure 4a is an
+  admission-risk landscape with direct bootstrap-interval labels; Figure 5b is
+  a concentric adherence-interval display and Figure 5c is a contract lattice.
+  These changes replace simple dot, bar, and yes/no-table encodings without
+  adding or changing any measurement.
+
+  Terminology correction: recurring prose uses FORGET-CASCADE closure. The
+  executable grammar appears once as FORGET EPISODE e CASCADE. The current
+  user-provided Figure 2 image still contains its older operator label and is
+  intentionally left untouched pending user-controlled regeneration.
+
+  Final build command:
+    PATH=C:\Program Files\Git\usr\bin;%PATH%; latexmk -pdf
+      -interaction=nonstopmode -halt-on-error cmtw_v4_vision.tex
+  Result: PASS. 9-page PDF (six manuscript pages plus references); no undefined
+  citations/references and no overfull boxes reported by the final log.
+  scripts/plot_cmtw_v4_figures.R
+  9D9A33813A2BA9EFB360BF75AA9D4BF42A731D3BBF5461F8F6931300A931FD6F
+  docs/paper/cmtw_v4_vision.tex
+  F5A86593BDD88808521058071C4DCA688301F1BF009FB5F693907576C16A24DF
+  docs/paper/cmtw_v4_vision.pdf
+  D5E490EE3330A814A820AF3AC52D2DAE1AEF00929D8ACA2ECAD85D486272AB0A
+  docs/paper/cmtw_v4_vision_zh.txt
+  A17EEC273F58DBEF28B9D50A50D8CE2A37C157156C0FE8162FA3B3FC84DAED29
+  docs/paper/figures/v4/cmtw-v4-fig3-recorded-derivative-closure.pdf
+  E5060D786AC5823E6DC452D7398891225BECA831BF55012BD2890ECA8D5C8CBF
+  docs/paper/figures/v4/cmtw-v4-fig4-admission-calibration.pdf
+  3F4B9707A24F5CDB89D4A2BC01E221FE0AAB7617AEDB0F96C5C61409BD91A374
+  docs/paper/figures/v4/cmtw-v4-fig5-capability-boundary.pdf
+  FE962DAE7B0659C24B0BE1255499A172C380F75887DC86B7743F3946C85CF44A
+
+V5 figure redraw (2026-07-26, Asia/Shanghai):
+  User-selected backend: Python/Matplotlib only. The V5 plotting script reads
+  accepted E1, E2, and E4 JSON artifacts and writes vector PDF, editable SVG,
+  600-dpi TIFF, PNG inspection copies, and tidy source CSV files. It makes no
+  network request, local-model request, data-generation call, or experiment.
+  Commands:
+    python scripts/plot_cmtw_v5_figures.py
+    PATH=C:\Program Files\Git\usr\bin;%PATH%; latexmk -pdf
+      -interaction=nonstopmode -halt-on-error cmtw_v4_vision.tex
+
+  Figure changes: Fig.3 is a double-column semantic-lineage Sankey composite
+  plus a 20-seed boxplot; Fig.4 is a bubble calibration map plus a shared-scale
+  heatmap; Fig.5 uses T-stratified 2^3 heatmaps, horizontal bootstrap-CI bars,
+  and a native TikZ contract lattice. Ribbons explicitly encode recorded
+  semantic derivation rather than conserved population flow. All values remain
+  frozen accepted measurements.
+
+  Static build audit: PASS. PDF has 9 pages total; six manuscript pages and
+  references beginning on page 7. No undefined citations/references or
+  overfull boxes are reported by the final log.
+  scripts/plot_cmtw_v5_figures.py
+  3B868C3893EA48384D374488FC4AF2C3E8D5C228F36C3520063F21A032D86B86
+  docs/paper/cmtw_v4_vision.tex
+  3E2C4C90126AEC08B11BFD7E5EDFD1AA5B60EDDCEB13B8F5F96FDA1B7C700644
+  docs/paper/cmtw_v4_vision.pdf
+  FA200993108E72145B2821566E19FC4B854FF10E6715DF877B0FD075B834F6A5
+  docs/paper/figures/v4/cmtw-v5-fig3-deletion-lineage.pdf
+  2AA51B6DF78E5B6FBB63B39EFEA2539BE3742541EA5F895B034D6D9077BAA70A
+  docs/paper/figures/v4/cmtw-v5-fig4-admission-calibration.pdf
+  3420383A42125F8F6136AAB9A460B6913C0A07926F255C48B41DF7981592F7AB
+  docs/paper/figures/v4/cmtw-v5-fig5-contract-evidence.pdf
+  45AF64A6B09EBA44BD1D4101D26DA9A592D6AE156DDB4B6BB74F0861584A7CF1
+  docs/paper/figures/v4/cmtw-v5-fig5c-contract-lattice.tex
+  222A9C4733CB6181725CFFD8C8263D6602ECCBE756679C7B74D1F06E54A2C41F
+
+V6 visual-argument rebuild (2026-07-26, Asia/Shanghai):
+  Scope: figure redraw and caption alignment only. No experiment, inference,
+  local-model request, data generation, network request, or statistical
+  pseudo-sampling was performed. The accepted E1/E2/E4 JSON artifacts remained
+  read-only.
+
+  Commands:
+    python scripts/plot_cmtw_v5_figures.py
+    PATH=C:\Program Files\Git\usr\bin;%PATH%; latexmk -pdf
+      -interaction=nonstopmode -halt-on-error cmtw_v4_vision.tex
+    pypdfium2 render of manuscript pages 5--6 for final visual QA
+
+  Evidence mapping:
+  - Fig.3b reads seed_rows[*].mean_recon_seconds from
+    results/v4/e1_structural_20seeds_mistral_r1.json. It uses an explicit
+    broken axis for the 19 values in 3.631--3.750 s and the one 6.263 s value.
+  - Fig.4a recomputes per-seed contamination recall and safe-write acceptance
+    directly from the frozen raw E4 records. Values remain at their exact
+    discrete support {0, 0.5, 1}; no continuous KDE is used.
+  - Fig.5b reads the 20 exact overall seed_values and accepted bootstrap95
+    intervals from results/v4/e2_full_contract_3models_analysis_r3.json.
+
+  Figure changes:
+  - Fig.3a is one branching semantic-lineage map rather than three repeated
+    miniatures; Fig.3b is a violin/IQR glyph plus a labelled broken-axis
+    isolated observation, with no outlier point.
+  - Fig.4a is a paired discrete raincloud with exact frequency capsules and
+    overlap-only rain ticks; Fig.4b remains a shared-scale direct-value heatmap.
+  - Fig.5b is an exact-support frequency silhouette rather than a bar chart.
+    Fig.5c is a compact no-crossing TikZ lifecycle contract stack.
+
+  Static build audit: PASS. PDF has 9 pages total; manuscript pages are 1--6
+  and References begins on page 7. Final LaTeX log contains no undefined
+  citation/reference and no overfull box. Final page-scale PNG inspection found
+  no clipped labels, overlapping panels, or unreadable glyphs.
+
+  scripts/plot_cmtw_v5_figures.py
+  86945C3B774D9CD9C5BAA938D0E560504175873019868AB4D144862F5F9EB862
+  docs/v4/figure-contract-v4.txt
+  414D03F67C93DB919550E9393508490EBFC0E08031844AEFB9D4A47176F0E5E5
+  docs/paper/cmtw_v4_vision.tex
+  53CF43D2BE42E258E24995B40138775C76B00401D7E258A3EF00C9AA4A70491E
+  docs/paper/cmtw_v4_vision.pdf
+  11A9AE0511E8DBF064EC6A557E598A8E4592176F2A90F0BE6940F31AAC0EF919
+  docs/paper/cmtw_v4_vision_zh.txt
+  CC743A4EABAE9D4A0002305CD309254087999D943A73789FD1D8173B3C1C0592
+  docs/paper/figures/v4/cmtw-v6-fig3-deletion-lineage.pdf
+  EB4EF53B7F22B419FBE0094EF4F109F24DBD75FC3CDD386952360F52F2E0C620
+  docs/paper/figures/v4/cmtw-v6-fig4-admission-calibration.pdf
+  439C75200CC4FC57B683C92588210C147E75C2857F69AC4E2E118AB9FA9D09CE
+  docs/paper/figures/v4/cmtw-v6-fig5-contract-evidence.pdf
+  D43C1D03E96C2790B712FEDB3A629390C783F1554BBFF621860BC94C7F39AC17
+  docs/paper/figures/v4/cmtw-v6-fig5c-contract-stack.tex
+  40BF522340396788974B5B2C41CC9F7843FE03D1C0B526C97CC25FBEC39DB1C5
+  docs/paper/figures/v4/source-data/fig3-v6-rebuild-latency.csv
+  59DB168CF7947770F0271AF84DC6478C98FF652884C641E46F451B1B5D7F7AD9
+  docs/paper/figures/v4/source-data/fig4-v6-admission-seeds.csv
+  A0AFB52315462AC875D0CF3B43876E7D8870064B39BBA552644C925159DDC0CD
+  docs/paper/figures/v4/source-data/fig4-v6-case-matrix.csv
+  D45D16B861C562F2E3B6B0399586F4DE594A2BA3465FCEEB9F30B1796DAC09E0
+  docs/paper/figures/v4/source-data/fig5-v6-factorial.csv
+  1724A5939BB89FDD589827E73B809F104A9311F58428BC94DAFF7063E87FFC56
+  docs/paper/figures/v4/source-data/fig5-v6-generator-adherence.csv
+  9BF025D27FA17988054548D4890FC092800335ACF97C8C3DC718595DE5B89CF6

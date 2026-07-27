@@ -1,0 +1,28 @@
+"strategy","obligation","value","status","denominator"
+"Preserve
+old view","Recorded lineage
+exposed",100,"breach","8/8"
+"Preserve
+old view","Exact canary
+leakage",41.67,"breach","10/24"
+"Preserve
+old view","Safe fact
+answered",100,"preserved","8/8"
+"Invalidate
+whole view","Recorded lineage
+exposed",0,"closed","0/8"
+"Invalidate
+whole view","Exact canary
+leakage",0,"closed","0/24"
+"Invalidate
+whole view","Safe fact
+answered",0,"lost","0/8"
+"Selective
+reconsolidation","Recorded lineage
+exposed",0,"closed","0/8"
+"Selective
+reconsolidation","Exact canary
+leakage",0,"closed","0/24"
+"Selective
+reconsolidation","Safe fact
+answered",100,"preserved","8/8"

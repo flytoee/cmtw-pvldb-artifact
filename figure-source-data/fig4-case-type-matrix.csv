@@ -1,0 +1,22 @@
+"model","case","accuracy","n"
+"LFM2 24B","Direct
+conflict",1,20
+"LFM2 24B","Gradual
+conflict",1,20
+"LFM2 24B","Legitimate
+state",0,20
+"LFM2 24B","Unrelated",0.15,20
+"Llama 3.2 MoE","Direct
+conflict",0,20
+"Llama 3.2 MoE","Gradual
+conflict",0,20
+"Llama 3.2 MoE","Legitimate
+state",1,20
+"Llama 3.2 MoE","Unrelated",1,20
+"Mistral 14B","Direct
+conflict",1,20
+"Mistral 14B","Gradual
+conflict",1,20
+"Mistral 14B","Legitimate
+state",0.4,20
+"Mistral 14B","Unrelated",1,20

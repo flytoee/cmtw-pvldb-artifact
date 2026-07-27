@@ -1,0 +1,7 @@
+The generated synthetic JSON payloads carry their existing CC0 metadata.
+
+The Python source files do not yet have an author-selected public license.
+Before public release, the authors must choose and add an appropriate code
+license and confirm that the selected repository/DOI is stable.  This local
+supplemental bundle intentionally does not assign rights on the authors'
+behalf.

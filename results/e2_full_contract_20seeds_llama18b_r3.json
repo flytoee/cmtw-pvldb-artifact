@@ -1,0 +1,1879 @@
+{
+  "name": "CMTW-v4 stratified local answer probe",
+  "seed_start": 20260727,
+  "seed_count": 20,
+  "endpoint": "http://127.0.0.1:1234",
+  "model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b",
+  "design": "one route and one category probe per seed; complete contract only when --only-full is set",
+  "method_boundary": "Local generation robustness only; correctness of contracts is evaluated separately by the exact operational oracle.",
+  "complete": true,
+  "records": [
+    {
+      "seed": 20260727,
+      "route": "elara-0727",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = comet."
+      ],
+      "expected": "comet",
+      "answer": "comet.",
+      "correct": true,
+      "seconds": 10.784,
+      "usage": {
+        "prompt_tokens": 118,
+        "completion_tokens": 4,
+        "total_tokens": 122,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260727,
+      "route": "elara-0727",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know",
+      "correct": false,
+      "seconds": 0.323,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 5,
+        "total_tokens": 127,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260727,
+      "route": "elara-0727",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = curious; valid_from = act-two."
+      ],
+      "expected": "curious",
+      "answer": "selected trust = curious.",
+      "correct": true,
+      "seconds": 0.352,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260727,
+      "route": "elara-0727",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.356,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260728,
+      "route": "vesper-0728",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = northstar."
+      ],
+      "expected": "northstar",
+      "answer": "selected call_sign = northstar.",
+      "correct": true,
+      "seconds": 0.414,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 8,
+        "total_tokens": 127,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260728,
+      "route": "vesper-0728",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.329,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260728,
+      "route": "vesper-0728",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = warm; valid_from = act-two."
+      ],
+      "expected": "warm",
+      "answer": "selected trust = cool.",
+      "correct": false,
+      "seconds": 0.352,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260728,
+      "route": "vesper-0728",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.38,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260729,
+      "route": "maris-0729",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = dearheart."
+      ],
+      "expected": "dearheart",
+      "answer": "selected call_sign = \"dearheart\".",
+      "correct": true,
+      "seconds": 0.446,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 10,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260729,
+      "route": "maris-0729",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.341,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260729,
+      "route": "maris-0729",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = gentle; valid_from = act-two."
+      ],
+      "expected": "gentle",
+      "answer": "selected trust = gentle.",
+      "correct": true,
+      "seconds": 0.352,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260729,
+      "route": "maris-0729",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.374,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260730,
+      "route": "sorrel-0730",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = sparrow."
+      ],
+      "expected": "sparrow",
+      "answer": "sparrow.",
+      "correct": true,
+      "seconds": 0.309,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 4,
+        "total_tokens": 123,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260730,
+      "route": "sorrel-0730",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.338,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260730,
+      "route": "sorrel-0730",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = patient; valid_from = act-two."
+      ],
+      "expected": "patient",
+      "answer": "selected trust = patient.",
+      "correct": true,
+      "seconds": 0.339,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260730,
+      "route": "sorrel-0730",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.376,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260731,
+      "route": "corin-0731",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = brightone."
+      ],
+      "expected": "brightone",
+      "answer": "brightone.",
+      "correct": true,
+      "seconds": 0.296,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 4,
+        "total_tokens": 123,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260731,
+      "route": "corin-0731",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.327,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260731,
+      "route": "corin-0731",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = curious; valid_from = act-two."
+      ],
+      "expected": "curious",
+      "answer": "selected trust = curious.",
+      "correct": true,
+      "seconds": 0.357,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260731,
+      "route": "corin-0731",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.383,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260732,
+      "route": "lyra-0732",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = wayfarer."
+      ],
+      "expected": "wayfarer",
+      "answer": "selected call_sign = wayfarer.",
+      "correct": true,
+      "seconds": 0.436,
+      "usage": {
+        "prompt_tokens": 120,
+        "completion_tokens": 9,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260732,
+      "route": "lyra-0732",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.351,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260732,
+      "route": "lyra-0732",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = steady; valid_from = act-two."
+      ],
+      "expected": "steady",
+      "answer": "selected trust = steady.",
+      "correct": true,
+      "seconds": 0.353,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260732,
+      "route": "lyra-0732",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.376,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260733,
+      "route": "ren-0733",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = little-cloud."
+      ],
+      "expected": "little-cloud",
+      "answer": "selected call_sign = little-cloud.",
+      "correct": true,
+      "seconds": 0.408,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 8,
+        "total_tokens": 127,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260733,
+      "route": "ren-0733",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.323,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260733,
+      "route": "ren-0733",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = focused; valid_from = act-two."
+      ],
+      "expected": "focused",
+      "answer": "selected trust = focused.",
+      "correct": true,
+      "seconds": 0.333,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260733,
+      "route": "ren-0733",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.348,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260734,
+      "route": "tavin-0734",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = firefly."
+      ],
+      "expected": "firefly",
+      "answer": "selected call_sign = firefly.",
+      "correct": true,
+      "seconds": 0.395,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 8,
+        "total_tokens": 127,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260734,
+      "route": "tavin-0734",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.328,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260734,
+      "route": "tavin-0734",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = open; valid_from = act-two."
+      ],
+      "expected": "open",
+      "answer": "selected trust = closed;",
+      "correct": false,
+      "seconds": 0.346,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260734,
+      "route": "tavin-0734",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.373,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260735,
+      "route": "elara-0735",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = comet."
+      ],
+      "expected": "comet",
+      "answer": "comet.",
+      "correct": true,
+      "seconds": 0.301,
+      "usage": {
+        "prompt_tokens": 118,
+        "completion_tokens": 4,
+        "total_tokens": 122,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260735,
+      "route": "elara-0735",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.344,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260735,
+      "route": "elara-0735",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = curious; valid_from = act-two."
+      ],
+      "expected": "curious",
+      "answer": "selected trust = curious.",
+      "correct": true,
+      "seconds": 0.353,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260735,
+      "route": "elara-0735",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.378,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260736,
+      "route": "vesper-0736",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = northstar."
+      ],
+      "expected": "northstar",
+      "answer": "selected call_sign = northstar.",
+      "correct": true,
+      "seconds": 0.4,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 8,
+        "total_tokens": 127,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260736,
+      "route": "vesper-0736",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.322,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260736,
+      "route": "vesper-0736",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = warm; valid_from = act-two."
+      ],
+      "expected": "warm",
+      "answer": "selected trust = cool.",
+      "correct": false,
+      "seconds": 0.36,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260736,
+      "route": "vesper-0736",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.368,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260737,
+      "route": "maris-0737",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = dearheart."
+      ],
+      "expected": "dearheart",
+      "answer": "selected call_sign = \"dearheart\".",
+      "correct": true,
+      "seconds": 0.474,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 10,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260737,
+      "route": "maris-0737",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.36,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260737,
+      "route": "maris-0737",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = gentle; valid_from = act-two."
+      ],
+      "expected": "gentle",
+      "answer": "selected trust = gentle.",
+      "correct": true,
+      "seconds": 0.354,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260737,
+      "route": "maris-0737",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.373,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260738,
+      "route": "sorrel-0738",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = sparrow."
+      ],
+      "expected": "sparrow",
+      "answer": "sparrow.",
+      "correct": true,
+      "seconds": 0.314,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 4,
+        "total_tokens": 123,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260738,
+      "route": "sorrel-0738",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.352,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260738,
+      "route": "sorrel-0738",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = patient; valid_from = act-two."
+      ],
+      "expected": "patient",
+      "answer": "selected trust = patient.",
+      "correct": true,
+      "seconds": 0.352,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260738,
+      "route": "sorrel-0738",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.384,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260739,
+      "route": "corin-0739",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = brightone."
+      ],
+      "expected": "brightone",
+      "answer": "brightone.",
+      "correct": true,
+      "seconds": 0.282,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 4,
+        "total_tokens": 123,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260739,
+      "route": "corin-0739",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.356,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260739,
+      "route": "corin-0739",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = curious; valid_from = act-two."
+      ],
+      "expected": "curious",
+      "answer": "selected trust = curious.",
+      "correct": true,
+      "seconds": 0.332,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260739,
+      "route": "corin-0739",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.365,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260740,
+      "route": "lyra-0740",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = wayfarer."
+      ],
+      "expected": "wayfarer",
+      "answer": "selected call_sign = wayfarer.",
+      "correct": true,
+      "seconds": 0.437,
+      "usage": {
+        "prompt_tokens": 120,
+        "completion_tokens": 9,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260740,
+      "route": "lyra-0740",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.356,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260740,
+      "route": "lyra-0740",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = steady; valid_from = act-two."
+      ],
+      "expected": "steady",
+      "answer": "selected trust = steady.",
+      "correct": true,
+      "seconds": 0.339,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260740,
+      "route": "lyra-0740",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.369,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260741,
+      "route": "ren-0741",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = little-cloud."
+      ],
+      "expected": "little-cloud",
+      "answer": "selected call_sign = little-cloud.",
+      "correct": true,
+      "seconds": 0.403,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 8,
+        "total_tokens": 127,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260741,
+      "route": "ren-0741",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.361,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260741,
+      "route": "ren-0741",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = focused; valid_from = act-two."
+      ],
+      "expected": "focused",
+      "answer": "selected trust = focused.",
+      "correct": true,
+      "seconds": 0.341,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260741,
+      "route": "ren-0741",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.358,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260742,
+      "route": "tavin-0742",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = firefly."
+      ],
+      "expected": "firefly",
+      "answer": "selected call_sign = firefly.",
+      "correct": true,
+      "seconds": 0.389,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 8,
+        "total_tokens": 127,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260742,
+      "route": "tavin-0742",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.346,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260742,
+      "route": "tavin-0742",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = open; valid_from = act-two."
+      ],
+      "expected": "open",
+      "answer": "selected trust = closed;",
+      "correct": false,
+      "seconds": 0.354,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260742,
+      "route": "tavin-0742",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.364,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260743,
+      "route": "elara-0743",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = comet."
+      ],
+      "expected": "comet",
+      "answer": "comet.",
+      "correct": true,
+      "seconds": 0.281,
+      "usage": {
+        "prompt_tokens": 118,
+        "completion_tokens": 4,
+        "total_tokens": 122,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260743,
+      "route": "elara-0743",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.338,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260743,
+      "route": "elara-0743",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = curious; valid_from = act-two."
+      ],
+      "expected": "curious",
+      "answer": "selected trust = curious.",
+      "correct": true,
+      "seconds": 0.339,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260743,
+      "route": "elara-0743",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.363,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260744,
+      "route": "vesper-0744",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = northstar."
+      ],
+      "expected": "northstar",
+      "answer": "selected call_sign = northstar.",
+      "correct": true,
+      "seconds": 0.393,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 8,
+        "total_tokens": 127,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260744,
+      "route": "vesper-0744",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.331,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260744,
+      "route": "vesper-0744",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = warm; valid_from = act-two."
+      ],
+      "expected": "warm",
+      "answer": "selected trust = cool.",
+      "correct": false,
+      "seconds": 0.363,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260744,
+      "route": "vesper-0744",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.357,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260745,
+      "route": "maris-0745",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = dearheart."
+      ],
+      "expected": "dearheart",
+      "answer": "selected call_sign = \"dearheart\".",
+      "correct": true,
+      "seconds": 0.476,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 10,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260745,
+      "route": "maris-0745",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.331,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260745,
+      "route": "maris-0745",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = gentle; valid_from = act-two."
+      ],
+      "expected": "gentle",
+      "answer": "selected trust = gentle.",
+      "correct": true,
+      "seconds": 0.348,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260745,
+      "route": "maris-0745",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.376,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260746,
+      "route": "sorrel-0746",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "persona",
+      "question": "What selected call sign should this answer use?",
+      "context": [
+        "ANSWER_EVIDENCE: selected call_sign = sparrow."
+      ],
+      "expected": "sparrow",
+      "answer": "sparrow.",
+      "correct": true,
+      "seconds": 0.281,
+      "usage": {
+        "prompt_tokens": 119,
+        "completion_tokens": 4,
+        "total_tokens": 123,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260746,
+      "route": "sorrel-0746",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "pollution",
+      "question": "Was the player assertion selected as canon? Answer yes or no.",
+      "context": [
+        "ANSWER_EVIDENCE: selected admission decision = no."
+      ],
+      "expected": "no",
+      "answer": "I do not know.",
+      "correct": false,
+      "seconds": 0.357,
+      "usage": {
+        "prompt_tokens": 122,
+        "completion_tokens": 6,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260746,
+      "route": "sorrel-0746",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "state",
+      "question": "What trust value is selected for this answer?",
+      "context": [
+        "ANSWER_EVIDENCE: selected trust = patient; valid_from = act-two."
+      ],
+      "expected": "patient",
+      "answer": "selected trust = patient.",
+      "correct": true,
+      "seconds": 0.355,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 6,
+        "total_tokens": 129,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    },
+    {
+      "seed": 20260746,
+      "route": "sorrel-0746",
+      "configuration": "persona_invariant+forget_cascade+typed_valid_retrieval",
+      "category": "forget",
+      "question": "What sealed phrase is eligible answer evidence?",
+      "context": [
+        "NO_ACTIVE_ANSWER_EVIDENCE: FORGET CASCADE tombstoned every recorded derivative."
+      ],
+      "expected": "I do not know",
+      "answer": "I do not know",
+      "correct": true,
+      "seconds": 0.38,
+      "usage": {
+        "prompt_tokens": 123,
+        "completion_tokens": 5,
+        "total_tokens": 128,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "served_model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b"
+    }
+  ],
+  "accuracy": {
+    "persona_invariant+forget_cascade+typed_valid_retrieval::forget": {
+      "correct": 20,
+      "n": 20,
+      "accuracy": 1.0
+    },
+    "persona_invariant+forget_cascade+typed_valid_retrieval::overall": {
+      "correct": 55,
+      "n": 80,
+      "accuracy": 0.6875
+    },
+    "persona_invariant+forget_cascade+typed_valid_retrieval::persona": {
+      "correct": 20,
+      "n": 20,
+      "accuracy": 1.0
+    },
+    "persona_invariant+forget_cascade+typed_valid_retrieval::pollution": {
+      "correct": 0,
+      "n": 20,
+      "accuracy": 0.0
+    },
+    "persona_invariant+forget_cascade+typed_valid_retrieval::state": {
+      "correct": 15,
+      "n": 20,
+      "accuracy": 0.75
+    }
+  }
+}

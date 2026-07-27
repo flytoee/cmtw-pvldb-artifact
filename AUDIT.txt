@@ -1,0 +1,31 @@
+CMTW v4 supplemental-artifact static audit
+============================================
+
+Packaging date: 2026-07-27 (Asia/Shanghai)
+
+Scope:
+- accepted synthetic manifests only;
+- accepted raw and aggregate JSON results only;
+- no failed/partial pilot, stdout/stderr log, or excluded development result;
+- no model or experiment rerun during packaging.
+
+Hard-constraint audit:
+- restricted-role exact-name scan over data/, results/, scripts/, and
+  figure-source-data/: PASS, zero matches;
+- cloud-endpoint literal scan over scripts/: PASS, zero matches;
+- inference endpoint recorded by accepted runners: 127.0.0.1:1234;
+- human subjects: none;
+- training: none.
+
+Claim audit:
+- recorded derivatives only; no neural-unlearning claim;
+- supplied-invariant execution only; no invariant-discovery claim;
+- 2^3 matrix described as additive contract completeness, not interaction;
+- stale-decoy trace described as a constructed existence proof;
+- selective reconstruction described as a correctness-dominating repair with
+  measurable recomputation cost, not a three-way correctness trade-off.
+
+Release audit:
+- generated JSON retains its existing CC0 metadata;
+- public code license: author decision required;
+- stable public repository/DOI: author decision required.

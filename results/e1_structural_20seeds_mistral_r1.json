@@ -1,0 +1,287 @@
+{
+  "name": "CMTW-v4 E1 multi-seed structural materialized-derivative audit",
+  "stage": "complete",
+  "complete": true,
+  "seed_start": 20260727,
+  "seed_count": 20,
+  "personas_per_seed": 8,
+  "model": "mistralai_ministral-3-14b-instruct-2512",
+  "embedding_model": "text-embedding-nomic-embed-text-v1.5",
+  "method_boundary": "Structural provenance and exact-string derivative audit only; answer leakage is measured separately in the E1 eight-persona answer-level snapshot.",
+  "seed_rows": [
+    {
+      "seed": 20260727,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 6.263
+    },
+    {
+      "seed": 20260728,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.693
+    },
+    {
+      "seed": 20260729,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.631
+    },
+    {
+      "seed": 20260730,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.666
+    },
+    {
+      "seed": 20260731,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.698
+    },
+    {
+      "seed": 20260732,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.676
+    },
+    {
+      "seed": 20260733,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.698
+    },
+    {
+      "seed": 20260734,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.709
+    },
+    {
+      "seed": 20260735,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.661
+    },
+    {
+      "seed": 20260736,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.713
+    },
+    {
+      "seed": 20260737,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.71
+    },
+    {
+      "seed": 20260738,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.714
+    },
+    {
+      "seed": 20260739,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.675
+    },
+    {
+      "seed": 20260740,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.687
+    },
+    {
+      "seed": 20260741,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.698
+    },
+    {
+      "seed": 20260742,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.75
+    },
+    {
+      "seed": 20260743,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.74
+    },
+    {
+      "seed": 20260744,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.716
+    },
+    {
+      "seed": 20260745,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.657
+    },
+    {
+      "seed": 20260746,
+      "n": 8,
+      "materialized_canary": 1.0,
+      "materialized_keepsake": 1.0,
+      "recon_canary_free": 1.0,
+      "recon_keepsake": 1.0,
+      "preserve_old_structural_exposure": 1.0,
+      "whole_invalidate_structural_exposure": 0.0,
+      "selective_recon_structural_exposure": 0.0,
+      "mean_recon_seconds": 3.652
+    }
+  ],
+  "aggregate": {
+    "materialized_canary": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "materialized_keepsake": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "recon_canary_free": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "recon_keepsake": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "preserve_old_structural_exposure": {
+      "mean": 1.0,
+      "std": 0.0
+    },
+    "whole_invalidate_structural_exposure": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "selective_recon_structural_exposure": {
+      "mean": 0.0,
+      "std": 0.0
+    },
+    "mean_recon_seconds": {
+      "mean": 3.8203,
+      "std": 0.5757
+    }
+  }
+}

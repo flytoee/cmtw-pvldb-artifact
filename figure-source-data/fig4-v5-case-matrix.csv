@@ -1,0 +1,13 @@
+model,case,accuracy,n
+LFM2 24B,direct_conflict,1.0,20
+LFM2 24B,gradual_conflict,1.0,20
+LFM2 24B,legitimate_state,0.0,20
+LFM2 24B,unrelated,0.15,20
+Llama MoE,direct_conflict,0.0,20
+Llama MoE,gradual_conflict,0.0,20
+Llama MoE,legitimate_state,1.0,20
+Llama MoE,unrelated,1.0,20
+Mistral 14B,direct_conflict,1.0,20
+Mistral 14B,gradual_conflict,1.0,20
+Mistral 14B,legitimate_state,0.4,20
+Mistral 14B,unrelated,1.0,20

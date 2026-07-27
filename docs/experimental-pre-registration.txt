@@ -1,0 +1,88 @@
+C8.1 / CMTW-v4 experimental pre-registration
+Timestamp: 2026-07-26 Asia/Shanghai
+
+Purpose
+-------
+Establish the v4 evidence plan before observing scaled results. The paper's
+two central contracts remain unchanged: PersonaInvariant admission integrity
+and verifiable FORGET-CASCADE closure over recorded derivatives. The
+diagnostic trace remains a witness, not a third primary contribution.
+
+E1 — semantic materialized derivative deletion triangle
+-------------------------------------------------------
+Object: an LLM-generated, coarse session summary shared by one forgotten and
+one retained episode; a local embedding and lexical posting are materialized
+from that summary.
+
+Strategies:
+  preserve_old_view: retain the old summary/index/vector after FORGET.
+  invalidate_whole_view: invalidate every view descending from the root.
+  selective_reconsolidation: regenerate and re-embed using non-tombstoned
+  sources only.
+
+Primary metrics:
+  - exact canary leakage rate under direct, paraphrase, and semantic-bait queries;
+  - structural exposure rate (selected view has a true path to forgotten root);
+  - retained-fact accuracy for a non-tombstoned source sharing the old view;
+  - local reconstruction latency, token usage, and embedding calls;
+  - lineage coverage and certificate soundness.
+
+Expected directional pattern, not a guaranteed result:
+  preserve_old_view exposes the forgotten root most often;
+  invalidate_whole_view reduces exposure while sacrificing retained context;
+  selective_reconsolidation reduces exposure while retaining more safe context.
+
+Boundary: this measures recorded semantic materialized derivatives. It does not
+claim parameter erasure, unrecorded shared salience removal, or neural unlearning.
+
+E2 — multi-seed contract evaluation
+-----------------------------------
+Generate at least 20 independent fixed seeds. Each seed contains original
+synthetic personas and balanced query categories. Run all I/C/T combinations
+over the full programmatic contract oracle. Report seed-level mean, paired
+effects, and nonparametric bootstrap confidence intervals. Do not report
+single-seed fractional percentages as primary evidence.
+
+E3 — temporal-relational cascade reference
+------------------------------------------
+Implement a local reference baseline with structured valid-time selection,
+recorded derivation edges, and cascade invalidation. It is not a baseline to
+"beat": matching CMTW on structured closure is expected. Its role is to make
+the capability boundary explicit: it lacks the natural-language admission
+interface, answer-time evidence witness, and selective semantic
+re-consolidation layer.
+
+E4 — PersonaInvariant admission stress test
+-------------------------------------------
+Evaluate given-invariant enforcement, not invariant discovery. Inputs are
+balanced among direct contradictory assertions, gradual/indirect contamination,
+legitimate relationship-state revision, and unrelated assertions. Report
+admission precision, recall, false-quarantine rate, and safe-state retention.
+
+E5 — typed eligibility mechanism test
+-------------------------------------
+Use high-similarity decoy evidence with wrong object type or valid-time version.
+The precise hypothesis is answer-time, not operator-local: typed eligibility
+should prevent semantically ineligible evidence from entering the answer path,
+thereby making the category-specific benefits of admission and closure visible
+in end-to-end answers. If the interaction is not stable across seeds, it will
+not be promoted to a central claim.
+
+Local-only protocol
+-------------------
+All generation, embeddings, summaries, retrieval, and judging run through
+LM Studio at 127.0.0.1:1234. The primary answer model is Mistral 14B; LFM2 and
+Llama-3.2 8x3B MoE are generator cross-checks on a fixed stratified held-out
+subset. The bundled Nomic model provides local embeddings. No cloud API,
+training, CUDA/A40/multi-GPU execution, human subject, or restricted public
+character is permitted.
+
+Acceptance criteria for scaling after E1 pilot
+----------------------------------------------
+1. At least 75% of local summaries must retain both the synthetic canary and a
+   retained fact before FORGET; otherwise the chosen materializer cannot expose
+   the intended compaction tension and the pilot must be redesigned.
+2. The three deletion strategies must show a non-degenerate difference in at
+   least one of structural exposure, answer leakage, or retained-fact accuracy.
+3. Exact restricted-character scans of all new data/, results/, and prompt
+   source files must return zero matches before a snapshot is accepted.

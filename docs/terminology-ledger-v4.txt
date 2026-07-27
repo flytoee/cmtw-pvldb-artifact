@@ -1,0 +1,22 @@
+CMTW-v4 terminology ledger
+===========================
+
+Canonical term | First-use form | Use rule
+---------------|----------------|---------
+CMTW | Companion Memory Transactional Workload (CMTW) | Name of the workload; do not expand differently.
+PersonaInvariant | PersonaInvariant (PI) | Fixed identity predicate; use capital I consistently.
+RelationshipState | RelationshipState (RS) | Revisable relationship object with valid time.
+FORGET-CASCADE closure | FORGET-CASCADE closure | Canonical contract name; do not present an invented SQL grammar.
+recorded derivative | recorded derivative | A summary, embedding, index entry, or other view with recorded source edges.
+recorded semantic materialized derivative | recorded semantic materialized derivative | Current E1 scope; do not abbreviate to neural/implicit derivative.
+valid-time eligibility | valid-time eligibility | Predicate before ranking; not a synonym for retrieval score.
+answer witness | AnswerTrace witness | Evidence lineage delivered with an answer; not a diagnosis algorithm.
+selective re-consolidation | selective re-consolidation | Regenerate a derivative from non-tombstoned sources, then re-embed.
+temporal+cascade reference | temporal-relational cascade reference | E3 building-block baseline; never call it a straw baseline.
+given-invariant admission | given-invariant admission | E4 scope: enforcement of supplied constraints, not discovery/evolution.
+full evidence surface | full I+C+T evidence surface | E2 local-generator probe only; not a contract-correctness score.
+CMTW-Synthetic-v4 | CMTW-Synthetic-v4 | Entire v4 original synthetic evaluation family.
+romance-route role-play | romance-route role-play | Defined stress setting; avoid untranslated “otome” except parenthetical first-use if necessary.
+Mistral 14B | Mistral 14B | Neutral paper display name for primary local model.
+LFM2 24B | LFM2 24B | Neutral paper display name.
+Llama 3.2 MoE | Llama 3.2 MoE | Neutral paper display name; never reproduce local artifact modifiers in prose.

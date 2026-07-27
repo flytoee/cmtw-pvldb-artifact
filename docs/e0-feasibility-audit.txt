@@ -1,0 +1,75 @@
+C8.1 / CMTW-v4 — E0 feasibility audit
+Timestamp: 2026-07-26 Asia/Shanghai
+Status: PASS — authorized to implement E1–E5 under the stated constraints.
+
+Scope
+-----
+This audit precedes every v4 code or experiment. It verifies that the proposed
+experiments use synthetic data, entirely local inference, automatic evaluation,
+and no restricted public characters.
+
+Gate 1 — data
+---------------
+PASS. CMTW-v4 will be generated from fixed-seed, original synthetic templates.
+The existing v3 generator already records synthetic_only, no_human_subjects,
+no_training, no_public_character_lore, and restricted_characters_absent.
+V4 will preserve these fields and add explicit seeds, true derivation graphs,
+and automatic oracle predicates.
+
+Gate 2 — local baselines and views
+----------------------------------
+PASS. LM Studio at http://127.0.0.1:1234 returned the following needed local
+capabilities:
+
+- mistralai_ministral-3-14b-instruct-2512: chat completion smoke test passed
+  (temperature 0; response exactly "local-ok").
+- liquid/lfm2-24b-a2b: locally installed candidate cross-check model.
+- llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b:
+  locally installed candidate cross-check model.
+- text-embedding-nomic-embed-text-v1.5: /v1/embeddings smoke test passed;
+  2 inputs returned 2 vectors of dimension 768.
+
+No selected generation artifact exceeds 30 GiB:
+
+- Mistral Q4_K_S: 7,834,547,616 bytes (7.30 GiB),
+  SHA-256 84B45104CB503C19FEFA9DCEED3FB358B7EA1263BEFFDD7D4EF2F725221CA761.
+- LFM2 Q4_K_M: 14,415,473,952 bytes (13.43 GiB),
+  SHA-256 EB4D2D4D4E61B795726C2F526C4434CA6BC725AD7A783691B58681F025CF58F2.
+- Llama-3.2 8x3B MoE Q4_K_S: 10,661,776,416 bytes (9.93 GiB),
+  SHA-256 85E6881A63A70354ACE145458A81F5F5104BD14712194A6729A77FAD249EA90F.
+- Nomic Embed Text v1.5 Q4_K_M: local bundled embeddings artifact,
+  SHA-256 D4E388894E09CF3816E8B0896D81D265B55E7A9FFF9AB03FE8BF4EF5E11295AC.
+
+All inference calls will use LM Studio only. No cloud endpoint, training,
+CUDA/A40/multi-GPU execution, or model above 30 GiB is permitted.
+
+Gate 3 — fully automatic evaluation
+------------------------------------
+PASS. V4 will use a generator-side exact oracle for state, admission,
+true-derivation coverage, closure, and canary leakage. A local LLM judge may
+be added only as a separately reported semantic-paraphrase leakage check; it
+will never define contract correctness. No human participant or human rating is
+part of the protocol.
+
+IP audit
+--------
+PASS. Exact-name scans of data/, scripts/, and results/ found zero occurrences
+of: 散兵, 杜林, 基尼奇, 洛恩, Scaramouche, Wanderer, Durin, Kinich, or Lohn.
+An initial substring scan falsely matched the ordinary word "during" against
+"Durin"; this was corrected with whole-word matching and is retained as an
+audit note. V4 generation and results directories must be scanned before every
+snapshot is accepted.
+
+Frozen v3 baseline
+------------------
+The pre-v4 manuscript source, PDF, Chinese reading draft, and bibliography are
+preserved in docs/paper/frozen/cmtw_v3_pre_v4_20260726/. Their hashes appear in
+that directory's freeze-manifest.txt. V4 uses new filenames and must not edit
+the frozen snapshot.
+
+Next action
+-----------
+E1 pilot: generate a single synthetic seed with multi-episode summaries,
+embeddings, BM25 postings, true and recorded derivation graphs, then measure
+retention, canary leakage, and re-consolidation cost before scaling to multi-seed
+E1/E2.

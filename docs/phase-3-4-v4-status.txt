@@ -1,0 +1,71 @@
+C8.1 / CMTW-v4 experimental STATUS
+===================================
+Timestamp: 2026-07-26 Asia/Shanghai
+
+Gate status
+-----------
+Data gate: PASS. All v4 workloads are deterministic, original synthetic data
+under CC0-1.0 templates; no public-character lore or human data occurs.
+Local-baseline gate: PASS. Mistral, LFM2, Llama 3.2 8x3B MoE local build, and
+Nomic embeddings were accessed only through LM Studio on localhost.
+Automatic-evaluation gate: PASS. Exact typed-state oracles, source-lineage
+checks, and local-model outputs provide all metrics; no human participant or
+human judge was used.
+Restricted-character audit: PASS. Exact Chinese/English scans over v4 data,
+results, and prompt sources returned zero matches.
+
+E1: recorded semantic materialized derivatives
+-----------------------------------------------
+Answer-level snapshot: 8 original personas, 288 Mistral answer records.
+Preserving the old coarse view left structural exposure at 8/8 and leaked the
+canary in 10/24 secret probes per modality while retaining the safe fact at
+8/8. Whole-view invalidation reduced leakage/exposure to zero but retained no
+safe fact (0/8). Selective re-consolidation reduced leakage/exposure to zero
+and retained the safe fact at 8/8. Mean local rebuild time: 5.948 s/persona.
+
+Structural robustness snapshot: 20 seeds x 8 personas = 160 real Mistral
+materializations and 160 re-consolidations, with local Nomic embeddings. Every
+original summary included its exact synthetic canary and safe identifier; every
+re-consolidated summary removed the canary and retained the safe identifier.
+Mean rebuild time: 3.8203 s/persona (seed SD 0.5757 s). This is a guarantee
+only for recorded semantic materialized derivatives, not neural unlearning.
+
+E2/E3/E5: semantics before generator behavior
+----------------------------------------------
+The exact 20-seed suite contains 5,120 balanced contract queries. Its 2^3 I/C/T
+matrix is an auditable operational-compliance check. The temporal relational
+reference matches typed valid-time and recorded-cascade behavior, but does not
+have a natural-language PersonaInvariant admission interface. In high-similarity
+stale-decoy traces, rank-first picks a stale recap in 160/160 cases whereas
+typed eligibility selects the valid current state in 160/160 cases.
+
+E4: PersonaInvariant admission stress test
+------------------------------------------
+Given-invariant enforcement uses 20 direct conflicts, 20 gradual conflicts,
+20 legitimate relationship revisions, and 20 unrelated assertions per model.
+Mistral catches all synthetic contaminations but false-quarantines 30% of safe
+inputs. LFM2 catches all contamination but false-quarantines 92.5% of safe
+inputs. The Llama 3.2 8x3B MoE local build accepts all inputs, yielding zero
+contamination recall and zero false quarantine. This is positive evidence that
+identity constraints require calibrated semantics rather than a simplistic
+reject-all policy.
+
+Three-model full-contract generation check
+------------------------------------------
+On 20 fixed seeds and the full I+C+T evidence surface, Mistral follows all 80
+probes. LFM2 and the Llama local build show lower evidence-surface adherence
+(0.5875 and 0.6875 seed means respectively). These are generator properties,
+not contractions of the exact memory contract and are not averaged with it.
+
+Necessary evidence boundary
+---------------------------
+The prior all-configuration generation probe showed that a generator may refuse
+to repeat intentionally unsafe evidence. It is therefore excluded from claims;
+the definitive evaluation separates exact contract compliance from
+generation-end adherence. This is an experimental design correction, not a
+post-hoc result substitution.
+
+Next step
+---------
+Generate the v4 R figure bundle, audit visual/semantic correspondence, then
+write a new CMTW-v4 Vision manuscript using the evidence hierarchy fixed here.

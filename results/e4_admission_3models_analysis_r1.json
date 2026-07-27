@@ -1,0 +1,206 @@
+{
+  "name": "CMTW-v4 cross-model admission analysis",
+  "input_files": [
+    "D:\\08 CS ComputerScience\\C8 Emotional Companion\\VLDB 2027\\results\\v4\\e4_admission_20seeds_mistral_r1.json",
+    "D:\\08 CS ComputerScience\\C8 Emotional Companion\\VLDB 2027\\results\\v4\\e4_admission_20seeds_lfm2_r1.json",
+    "D:\\08 CS ComputerScience\\C8 Emotional Companion\\VLDB 2027\\results\\v4\\e4_admission_20seeds_llama18b_r1.json"
+  ],
+  "method_boundary": "Given-invariant admission execution; no invariant discovery claim.",
+  "models": [
+    {
+      "model": "liquid/lfm2-24b-a2b",
+      "seed_n": 20,
+      "overall": {
+        "precision": 0.5194805194805194,
+        "recall": 1.0,
+        "false_quarantine_rate": 0.925,
+        "accuracy": 0.5375
+      },
+      "seed_level": {
+        "precision": {
+          "mean": 0.525,
+          "std": 0.0611,
+          "bootstrap95": [
+            0.5,
+            0.55
+          ]
+        },
+        "recall": {
+          "mean": 1.0,
+          "std": 0.0,
+          "bootstrap95": [
+            1.0,
+            1.0
+          ]
+        },
+        "false_quarantine_rate": {
+          "mean": 0.925,
+          "std": 0.1832,
+          "bootstrap95": [
+            0.85,
+            1.0
+          ]
+        },
+        "accuracy": {
+          "mean": 0.5375,
+          "std": 0.0916,
+          "bootstrap95": [
+            0.5,
+            0.575
+          ]
+        }
+      },
+      "by_case_kind": {
+        "direct_conflict": {
+          "correct": 20,
+          "n": 20,
+          "accuracy": 1.0
+        },
+        "gradual_conflict": {
+          "correct": 20,
+          "n": 20,
+          "accuracy": 1.0
+        },
+        "legitimate_state": {
+          "correct": 0,
+          "n": 20,
+          "accuracy": 0.0
+        },
+        "unrelated": {
+          "correct": 3,
+          "n": 20,
+          "accuracy": 0.15
+        }
+      }
+    },
+    {
+      "model": "llama-3.2-8x3b-moe-dark-champion-instruct-uncensored-abliterated-18.4b",
+      "seed_n": 20,
+      "overall": {
+        "precision": null,
+        "recall": 0.0,
+        "false_quarantine_rate": 0.0,
+        "accuracy": 0.5
+      },
+      "seed_level": {
+        "precision": {
+          "mean": null,
+          "std": 0.0,
+          "bootstrap95": null
+        },
+        "recall": {
+          "mean": 0.0,
+          "std": 0.0,
+          "bootstrap95": [
+            0.0,
+            0.0
+          ]
+        },
+        "false_quarantine_rate": {
+          "mean": 0.0,
+          "std": 0.0,
+          "bootstrap95": [
+            0.0,
+            0.0
+          ]
+        },
+        "accuracy": {
+          "mean": 0.5,
+          "std": 0.0,
+          "bootstrap95": [
+            0.5,
+            0.5
+          ]
+        }
+      },
+      "by_case_kind": {
+        "direct_conflict": {
+          "correct": 0,
+          "n": 20,
+          "accuracy": 0.0
+        },
+        "gradual_conflict": {
+          "correct": 0,
+          "n": 20,
+          "accuracy": 0.0
+        },
+        "legitimate_state": {
+          "correct": 20,
+          "n": 20,
+          "accuracy": 1.0
+        },
+        "unrelated": {
+          "correct": 20,
+          "n": 20,
+          "accuracy": 1.0
+        }
+      }
+    },
+    {
+      "model": "mistralai_ministral-3-14b-instruct-2512",
+      "seed_n": 20,
+      "overall": {
+        "precision": 0.7692307692307693,
+        "recall": 1.0,
+        "false_quarantine_rate": 0.3,
+        "accuracy": 0.85
+      },
+      "seed_level": {
+        "precision": {
+          "mean": 0.8,
+          "std": 0.1675,
+          "bootstrap95": [
+            0.7333,
+            0.8667
+          ]
+        },
+        "recall": {
+          "mean": 1.0,
+          "std": 0.0,
+          "bootstrap95": [
+            1.0,
+            1.0
+          ]
+        },
+        "false_quarantine_rate": {
+          "mean": 0.3,
+          "std": 0.2513,
+          "bootstrap95": [
+            0.2,
+            0.4
+          ]
+        },
+        "accuracy": {
+          "mean": 0.85,
+          "std": 0.1257,
+          "bootstrap95": [
+            0.8,
+            0.9
+          ]
+        }
+      },
+      "by_case_kind": {
+        "direct_conflict": {
+          "correct": 20,
+          "n": 20,
+          "accuracy": 1.0
+        },
+        "gradual_conflict": {
+          "correct": 20,
+          "n": 20,
+          "accuracy": 1.0
+        },
+        "legitimate_state": {
+          "correct": 8,
+          "n": 20,
+          "accuracy": 0.4
+        },
+        "unrelated": {
+          "correct": 20,
+          "n": 20,
+          "accuracy": 1.0
+        }
+      }
+    }
+  ]
+}

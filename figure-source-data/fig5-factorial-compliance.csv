@@ -1,0 +1,9 @@
+"configuration","I","C","T","compliance"
+"no_persona_invariant+forget_cascade+no_typed_valid_retrieval","I=0","C=1","T=0",0.25
+"no_persona_invariant+forget_cascade+typed_valid_retrieval","I=0","C=1","T=1",0.5
+"no_persona_invariant+no_forget_cascade+no_typed_valid_retrieval","I=0","C=0","T=0",0
+"no_persona_invariant+no_forget_cascade+typed_valid_retrieval","I=0","C=0","T=1",0.25
+"persona_invariant+forget_cascade+no_typed_valid_retrieval","I=1","C=1","T=0",0.75
+"persona_invariant+forget_cascade+typed_valid_retrieval","I=1","C=1","T=1",1
+"persona_invariant+no_forget_cascade+no_typed_valid_retrieval","I=1","C=0","T=0",0.5
+"persona_invariant+no_forget_cascade+typed_valid_retrieval","I=1","C=0","T=1",0.75

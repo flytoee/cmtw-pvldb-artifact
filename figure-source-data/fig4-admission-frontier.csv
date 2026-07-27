@@ -1,0 +1,4 @@
+"model","recall","recall_lo","recall_hi","fq","fq_lo","fq_hi"
+"LFM2 24B",1,1,1,0.925,0.85,1
+"Llama 3.2 MoE",0,0,0,0,0,0
+"Mistral 14B",1,1,1,0.3,0.2,0.4
