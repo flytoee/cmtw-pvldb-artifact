@@ -82,9 +82,9 @@
 <text x='42.45' y='29.39' style='font-size: 6.89px; font-weight: bold;fill: #5E6B78; font-family: "Arial";' textLength='31.73px' lengthAdjust='spacingAndGlyphs'>Assertion</text>
 <text x='42.45' y='69.38' style='font-size: 6.89px; font-weight: bold;fill: #5E6B78; font-family: "Arial";' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>Forget</text>
 <text x='34.27' y='109.37' style='font-size: 6.89px; font-weight: bold;fill: #5E6B78; font-family: "Arial";' textLength='38.23px' lengthAdjust='spacingAndGlyphs'>As-of query</text>
-<text x='112.44' y='51.19' style='font-size: 5.35px;fill: #5E6B78; font-family: "Arial";' textLength='24.05px' lengthAdjust='spacingAndGlyphs'>admission</text>
-<text x='112.44' y='69.37' style='font-size: 5.35px;fill: #5E6B78; font-family: "Arial";' textLength='19.89px' lengthAdjust='spacingAndGlyphs'>cascade</text>
-<text x='112.44' y='109.37' style='font-size: 5.35px;fill: #5E6B78; font-family: "Arial";' textLength='22.86px' lengthAdjust='spacingAndGlyphs'>valid-time</text>
+<text x='106.08' y='51.19' style='font-size: 5.35px;fill: #5E6B78; font-family: "Arial";' textLength='24.05px' lengthAdjust='spacingAndGlyphs'>admission</text>
+<text x='106.08' y='69.37' style='font-size: 5.35px;fill: #5E6B78; font-family: "Arial";' textLength='19.89px' lengthAdjust='spacingAndGlyphs'>cascade</text>
+<text x='106.08' y='109.37' style='font-size: 5.35px;fill: #5E6B78; font-family: "Arial";' textLength='22.86px' lengthAdjust='spacingAndGlyphs'>valid-time</text>
 <text x='180.61' y='22.37' text-anchor='middle' style='font-size: 8.11px; font-weight: bold;fill: #148C8F; font-family: "Arial";' textLength='50.38px' lengthAdjust='spacingAndGlyphs'>AnswerTrace</text>
 <text x='180.61' y='28.25' text-anchor='middle' style='font-size: 5.75px;fill: #5E6B78; font-family: "Arial";' textLength='87.52px' lengthAdjust='spacingAndGlyphs'>selected IDs  |  eligibility  |  lineage</text>
 <text x='176.98' y='54.25' text-anchor='middle' style='font-size: 6.26px; font-weight: bold;fill: #148C8F; font-family: "Arial";' textLength='41.62px' lengthAdjust='spacingAndGlyphs'>Eligibility-first</text>

@@ -1,5 +1,5 @@
-CMTW v4 — PVLDB supplemental artifact (release 1.3)
-=====================================================
+CMTW PVLDB supplemental artifact
+================================
 
 Purpose
 -------
@@ -140,8 +140,11 @@ Figure reproduction from frozen files
 The exact adopted files are under paper-figures/.  Regenerate their current
 visual encodings from frozen CSVs and self-contained source with:
 
-The submission uses cmtw-v27-fig5-contract-portability.*; the v26 files are
-retained only as the traceable Figure 5 snapshot from release 1.2.
+The adopted outputs use stable submission names:
+
+  paper-figures/cmtw-fig3-recorded-view-repair.*
+  paper-figures/cmtw-fig4-lifecycle-correctness.pdf
+  paper-figures/cmtw-fig5-contract-portability.*
 
   Rscript scripts/build_cmtw_fig3_submission.R
   powershell -ExecutionPolicy Bypass -File scripts/render_cmtw_fig4_submission.ps1
@@ -154,13 +157,6 @@ contains a render timestamp, so PDF byte hashes may differ although rendered
 content is identical.  The Figure 4 audit renders adopted and reproduced PDFs at
 150 dpi and obtains identical raster SHA-256 values; its source is
 scripts/fig4_submission.html.
-
-The older Python commands remain available to audit historical encodings and
-recomputed source tables; they are not the adopted submission layout:
-
-  python -m pip install -r requirements.txt
-  python scripts/plot_cmtw_v5_figures.py
-  python scripts/plot_cmtw_v7_figure_adoptions.py
 
 Integrity and scope audits
 --------------------------
@@ -177,9 +173,9 @@ source data.
 Release note
 ------------
 Python source code is released under MIT; original synthetic data and result
-tables are released under CC0-1.0.  The immutable submission snapshot is:
+tables are released under CC0-1.0.  The public artifact repository is:
 
-  https://github.com/flytoee/cmtw-pvldb-artifact/releases/tag/v1.3-pvldb-submission
+  https://github.com/flytoee/cmtw-pvldb-artifact
 
 Historical workspace paths recorded in docs/reproducibility-log-v4.txt are
 preserved verbatim.  The packaged mapping is results/v4/ -> results/ and

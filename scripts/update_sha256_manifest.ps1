@@ -1,16 +1,20 @@
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $artifactDir = Split-Path -Parent $scriptDir
 $manifest = Join-Path $artifactDir 'SHA256SUMS.txt'
-$gitPrefix = (Join-Path $artifactDir '.git') + [System.IO.Path]::DirectorySeparatorChar
+$tracked = & git -C $artifactDir ls-files
+if ($LASTEXITCODE -ne 0) {
+  throw 'Could not enumerate tracked artifact files.'
+}
 
-$lines = Get-ChildItem -LiteralPath $artifactDir -Recurse -File |
-  Where-Object {
-    -not $_.FullName.StartsWith($gitPrefix, [System.StringComparison]::OrdinalIgnoreCase) -and
-    $_.FullName -ne $manifest
-  } |
+$lines = $tracked |
+  Where-Object { $_ -ne 'SHA256SUMS.txt' } |
   ForEach-Object {
-    $relative = $_.FullName.Substring($artifactDir.Length + 1).Replace('\', '/')
-    $hash = (Get-FileHash -Algorithm SHA256 -LiteralPath $_.FullName).Hash.ToLowerInvariant()
+    $relative = $_.Replace('\', '/')
+    $path = Join-Path $artifactDir ($relative.Replace('/', '\'))
+    if (-not (Test-Path -LiteralPath $path)) {
+      throw "Tracked artifact file is missing: $relative"
+    }
+    $hash = (Get-FileHash -Algorithm SHA256 -LiteralPath $path).Hash.ToLowerInvariant()
     "$hash  $relative"
   } |
   Sort-Object

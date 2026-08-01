@@ -1,4 +1,0 @@
-model,recall,recall_lo,recall_hi,fq,fq_lo,fq_hi,n
-LFM2 24B,1.0,1.0,1.0,0.925,0.85,1.0,20
-Llama MoE,0.0,0.0,0.0,0.0,0.0,0.0,20
-Mistral 14B,1.0,1.0,1.0,0.3,0.2,0.4,20

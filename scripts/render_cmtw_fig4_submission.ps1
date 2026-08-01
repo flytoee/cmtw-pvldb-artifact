@@ -6,7 +6,7 @@ $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $artifactDir = Split-Path -Parent $scriptDir
 $htmlPath = Join-Path $scriptDir 'fig4_submission.html'
 if (-not $OutputPath) {
-  $OutputPath = Join-Path $artifactDir 'reproduced\paper-figures\cmtw-v19-fig4-lifecycle-correctness.pdf'
+  $OutputPath = Join-Path $artifactDir 'reproduced\paper-figures\cmtw-fig4-lifecycle-correctness.pdf'
 }
 $OutputPath = [System.IO.Path]::GetFullPath($OutputPath)
 $outputDir = Split-Path -Parent $OutputPath

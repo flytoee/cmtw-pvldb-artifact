@@ -66,170 +66,6 @@ save_bundle <- function(plot, stem, width_mm, height_mm, dpi = 600) {
          dpi = dpi, compression = "lzw", bg = "white")
 }
 
-model_cols <- c(
-  "Mistral 14B" = unname(pal[["teal"]]),
-  "LFM2 24B" = unname(pal[["ochre"]]),
-  "Llama MoE" = unname(pal[["navy"]])
-)
-
-# -----------------------------------------------------------------------------
-# Figure 4: admission failure -> failure localization -> contract necessity.
-# Rebuilt directly from frozen CSV tables; no web/HTML drawing source is used.
-# -----------------------------------------------------------------------------
-if (FALSE) {
-adm_seed <- read.csv(file.path(source_dir, "fig4-v6-admission-seeds.csv")) %>%
-  mutate(model = factor(model, levels = c("Mistral 14B", "LFM2 24B", "Llama MoE"))) %>%
-  group_by(model, safe_admission, contamination_recall) %>%
-  arrange(seed, .by_group = TRUE) %>%
-  mutate(
-    local_n = n(),
-    local_i = row_number(),
-    offset = if_else(local_n == 1, 0, seq(-0.018, 0.018, length.out = first(local_n))),
-    safe_plot = safe_admission + offset,
-    recall_plot = contamination_recall + rev(offset)
-  ) %>%
-  ungroup()
-
-frontier <- read.csv(file.path(source_dir, "fig4-admission-frontier.csv")) %>%
-  mutate(
-    model = recode(model, `Llama 3.2 MoE` = "Llama MoE"),
-    model = factor(model, levels = c("Mistral 14B", "LFM2 24B", "Llama MoE")),
-    safe = 1 - fq,
-    safe_lo = 1 - fq_hi,
-    safe_hi = 1 - fq_lo
-  )
-
-label_a <- tibble::tribble(
-  ~model, ~x, ~y, ~hjust,
-  "Mistral 14B", 0.67, 0.89, 0,
-  "LFM2 24B", 0.02, 0.80, 0,
-  "Llama MoE", 0.72, 0.11, 0
-) %>% mutate(model = factor(model, levels = levels(frontier$model)))
-
-p4a <- ggplot() +
-  annotate("rect", xmin = 0.95, xmax = 1.055, ymin = 0.95, ymax = 1.055,
-           fill = pal[["teal_light"]], colour = NA) +
-  geom_point(data = adm_seed,
-             aes(safe_plot, recall_plot, colour = model),
-             size = 1.35, alpha = 0.78) +
-  geom_segment(data = frontier,
-               aes(x = safe_lo, xend = safe_hi, y = recall, yend = recall,
-                   colour = model), linewidth = 0.50) +
-  geom_segment(data = frontier,
-               aes(x = safe_lo, xend = safe_lo, y = recall - 0.026,
-                   yend = recall + 0.026, colour = model), linewidth = 0.50) +
-  geom_segment(data = frontier,
-               aes(x = safe_hi, xend = safe_hi, y = recall - 0.026,
-                   yend = recall + 0.026, colour = model), linewidth = 0.50) +
-  geom_point(data = frontier,
-             aes(safe, recall, fill = model),
-             shape = 23, size = 3.8, colour = pal[["ink"]], stroke = 0.55) +
-  geom_text(data = label_a,
-            aes(x, y, label = model, colour = model, hjust = hjust),
-            family = "Arial", fontface = "bold", size = 2.25) +
-  annotate("text", x = 0.910, y = 1.050, label = "target ≥.95 / .95",
-           hjust = 1, vjust = 0.5, family = "Arial", fontface = "bold",
-           size = 1.75, colour = pal[["teal"]]) +
-  scale_colour_manual(values = model_cols) +
-  scale_fill_manual(values = model_cols) +
-  scale_x_continuous(limits = c(-0.065, 1.065), breaks = c(0, 0.5, 1.0),
-                     labels = c("0", ".5", "1"), expand = c(0, 0)) +
-  scale_y_continuous(limits = c(-0.065, 1.065), breaks = c(0, 0.5, 1.0),
-                     labels = c("0", ".5", "1"), expand = c(0, 0)) +
-  coord_cartesian(clip = "off") +
-  labs(x = "safe-write admission", y = "contamination recall", tag = "a") +
-  theme_cmtw(7.0) +
-  theme(
-    axis.title = element_text(size = 6.6),
-    axis.text = element_text(size = 6.2),
-    plot.margin = margin(7, 4, 2, 5, "pt")
-  )
-
-case_err <- read.csv(file.path(source_dir, "fig4-v6-case-matrix.csv")) %>%
-  mutate(
-    errors = round(n * (1 - accuracy)),
-    error_rate = errors / n,
-    label = sprintf("%d/%d", errors, n),
-    model = factor(model, levels = rev(c("Mistral 14B", "LFM2 24B", "Llama MoE"))),
-    obligation = if_else(case %in% c("direct_conflict", "gradual_conflict"),
-                         "must quarantine", "must admit"),
-    case = recode(case,
-                  direct_conflict = "direct\nconflict",
-                  gradual_conflict = "gradual\nconflict",
-                  legitimate_state = "valid\nrevision",
-                  unrelated = "safe\nwrite"),
-    case = factor(case, levels = c("direct\nconflict", "gradual\nconflict",
-                                  "valid\nrevision", "safe\nwrite")),
-    obligation = factor(obligation, levels = c("must quarantine", "must admit"))
-  )
-
-p4b <- ggplot(case_err, aes(case, model, fill = error_rate)) +
-  geom_tile(colour = "white", linewidth = 0.90) +
-  geom_text(aes(label = label, colour = error_rate >= 0.48),
-            family = "Arial", fontface = "bold", size = 2.35) +
-  facet_grid(. ~ obligation, scales = "free_x", space = "free_x") +
-  scale_fill_gradient(low = pal[["neutral_light"]], high = pal[["coral"]],
-                      limits = c(0, 1), guide = "none") +
-  scale_colour_manual(values = c(`FALSE` = pal[["slate_mid"]], `TRUE` = "white"),
-                      guide = "none") +
-  scale_x_discrete(position = "top") +
-  labs(x = NULL, y = NULL, tag = "b") +
-  theme_cmtw(7.0) +
-  theme(
-    axis.line = element_blank(), axis.ticks = element_blank(),
-    axis.text.x = element_text(size = 5.8, lineheight = 0.85, colour = pal[["slate"]]),
-    axis.text.y = element_text(size = 6.3),
-    strip.text = element_text(size = 6.1, face = "bold", colour = pal[["ink"]]),
-    panel.spacing.x = unit(2.4, "pt"),
-    plot.margin = margin(7, 4, 2, 4, "pt")
-  )
-
-config_levels <- c("000", "001", "010", "011", "100", "101", "110", "111")
-truth <- expand_grid(I = 0:1, C = 0:1, T = 0:1) %>%
-  mutate(config = paste0(I, C, T)) %>%
-  transmute(config,
-            `Persona integrity` = I,
-            `Pollution rejection` = I,
-            `Recorded closure` = C,
-            `As-of eligibility` = T) %>%
-  pivot_longer(-config, names_to = "obligation", values_to = "present") %>%
-  mutate(
-    config = factor(config, levels = config_levels),
-    obligation = factor(obligation,
-      levels = rev(c("Persona integrity", "Pollution rejection",
-                     "Recorded closure", "As-of eligibility"))),
-    mark = if_else(present == 1, "1", "")
-  )
-
-p4c <- ggplot(truth, aes(config, obligation, fill = factor(present))) +
-  geom_tile(colour = "white", linewidth = 0.70, width = 0.93, height = 0.84) +
-  geom_text(aes(label = mark, colour = factor(present)), family = "Arial",
-            fontface = "bold", size = 2.55) +
-  annotate("rect", xmin = 7.52, xmax = 8.48, ymin = 0.56, ymax = 4.44,
-           fill = NA, colour = pal[["teal"]], linewidth = 0.85) +
-  annotate("text", x = 8.63, y = 4.22, label = "complete",
-           hjust = 0, family = "Arial", fontface = "bold", size = 2.05,
-           colour = pal[["teal"]]) +
-  scale_fill_manual(values = c(`0` = pal[["coral_light"]], `1` = pal[["teal"]])) +
-  scale_colour_manual(values = c(`0` = pal[["coral_mid"]], `1` = "white"),
-                      guide = "none") +
-  scale_x_discrete(position = "top", expand = expansion(add = c(0.10, 0.72))) +
-  scale_y_discrete(expand = expansion(add = 0.08)) +
-  coord_cartesian(clip = "off") +
-  labs(x = "I / C / T configuration", y = NULL, tag = "c") +
-  theme_cmtw(7.1) +
-  theme(
-    axis.line = element_blank(), axis.ticks = element_blank(),
-    axis.text.x = element_text(size = 6.1, colour = pal[["ink"]]),
-    axis.text.y = element_text(size = 6.2, colour = pal[["ink"]]),
-    axis.title.x = element_text(size = 6.2, colour = pal[["slate"]], margin = margin(t = 2)),
-    plot.margin = margin(4, 19, 1, 5, "pt")
-  )
-
-fig4_top <- p4a | p4b + plot_layout(widths = c(1.07, 0.93))
-fig4 <- fig4_top / p4c + plot_layout(heights = c(1.16, 0.76))
-save_bundle(fig4, "cmtw-v14-fig4-lifecycle-correctness", 183, 68)
-}
 
 # -----------------------------------------------------------------------------
 # Figure 5: contract architecture -> generator-dependent answer boundary.
@@ -302,7 +138,7 @@ p5a <- ggplot() +
              hjust = 0, family = "Arial", fontface = "bold", size = 2.42,
             colour = pal[["slate"]]) +
   geom_text(data = lane5,
-            aes(x = 46.5, y = c(63.0, 53.0, 31.0), label = responsibility),
+            aes(x = 43.0, y = c(63.0, 53.0, 31.0), label = responsibility),
             hjust = 0, family = "Arial", size = 1.88,
             colour = pal[["slate"]]) +
   annotate("text", x = 84, y = 79.4, label = "AnswerTrace",
@@ -344,7 +180,7 @@ p5a <- ggplot() +
     plot.margin = margin(2, 3, 2, 3, "pt")
   )
 
-adh <- read.csv(file.path(source_dir, "fig5-v6-generator-adherence.csv")) %>%
+adh <- read.csv(file.path(source_dir, "fig5-generator-adherence-seeds.csv")) %>%
   mutate(
     model = factor(model, levels = c("Mistral 14B", "LFM2 24B", "Llama MoE")),
     code = recode(as.character(model),
@@ -466,22 +302,20 @@ p5b <- ggplot() +
   )
 
 fig5 <- (p5a | p5b) + plot_layout(widths = c(113, 70))
-save_bundle(fig5, "cmtw-v27-fig5-contract-portability", 183, 68)
+save_bundle(fig5, "cmtw-fig5-contract-portability", 183, 68)
 
 contract_text <- c(
-  "CMTW v27 figure contract",
-  "========================",
-  "Fig. 4 core conclusion: prompt-only identity admission has no usable operating point, and full lifecycle correctness requires I, C, and T.",
-  "Fig. 4 panel map: (a) enlarged admission operating plane; (b) semantic error matrix; (c) full-width exact I/C/T obligation audit.",
+  "CMTW submission figure contract",
+  "===============================",
   "Fig. 5 core conclusion: CMTW binds admission, valid-time eligibility, and recorded closure into an auditable database contract while downstream answer adherence remains generator-dependent.",
   "Fig. 5 panel map: (a) contract-plane architecture; (b) nonredundant confidence-lantern view of 20-seed generator adherence under one complete evidence surface.",
-  "Archetypes: Fig. 4 quantitative grid; Fig. 5 asymmetric schematic-led composite.",
+  "Archetype: asymmetric schematic-led composite.",
   "Backend: R only (ggplot2 + patchwork).",
   "Output: 183-mm vector PDF/SVG plus 600-dpi TIFF and review PNG.",
   "Integrity: all marks are generated from frozen CSV source tables; no HTML drawing code is used.",
-  "Layout-only revision from v26: the As-of query label is shifted left to clear the T operator node; data and encodings are unchanged.",
-  "Reviewer risk: Fig. 4c is a deterministic completeness audit, not an interaction or population estimate; Fig. 5b exposes rather than removes generator dependence."
+  "Layout QA: As-of query clears the T node; admission, cascade, and valid-time clear their route segments.",
+  "Reviewer risk: Fig. 5b exposes rather than removes generator dependence."
 )
-writeLines(contract_text, file.path(base_dir, "figure-contract-v27.txt"), useBytes = TRUE)
+writeLines(contract_text, file.path(base_dir, "figure-contract.txt"), useBytes = TRUE)
 
-cat("Built CMTW v27 Fig. 5 from frozen source tables in", base_dir, "\n")
+cat("Built submission Figure 5 from frozen source tables in", base_dir, "\n")

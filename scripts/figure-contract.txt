@@ -1,0 +1,10 @@
+CMTW submission figure contract
+===============================
+Fig. 5 core conclusion: CMTW binds admission, valid-time eligibility, and recorded closure into an auditable database contract while downstream answer adherence remains generator-dependent.
+Fig. 5 panel map: (a) contract-plane architecture; (b) nonredundant confidence-lantern view of 20-seed generator adherence under one complete evidence surface.
+Archetype: asymmetric schematic-led composite.
+Backend: R only (ggplot2 + patchwork).
+Output: 183-mm vector PDF/SVG plus 600-dpi TIFF and review PNG.
+Integrity: all marks are generated from frozen CSV source tables; no HTML drawing code is used.
+Layout QA: As-of query clears the T node; admission, cascade, and valid-time clear their route segments.
+Reviewer risk: Fig. 5b exposes rather than removes generator dependence.

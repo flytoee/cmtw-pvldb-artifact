@@ -28,8 +28,8 @@ Claim audit:
 Release audit:
 - generated JSON retains its existing CC0-1.0 metadata;
 - Python source license: MIT, recorded in LICENSE.txt;
-- stable tagged snapshot:
-  https://github.com/flytoee/cmtw-pvldb-artifact/releases/tag/v1.3-pvldb-submission;
+- public repository used by the submission form:
+  https://github.com/flytoee/cmtw-pvldb-artifact;
 - release ZIP uses POSIX "/" member paths for Windows, Linux, and macOS
   extraction.
 
