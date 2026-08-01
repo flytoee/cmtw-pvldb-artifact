@@ -13,8 +13,6 @@ authors:
     given-names: Yize
   - family-names: Ye
     given-names: Ning
-  - family-names: Luan
-    given-names: Qifu
 repository-code: "https://github.com/flytoee/cmtw-pvldb-artifact"
 url: "https://github.com/flytoee/cmtw-pvldb-artifact"
 license: MIT
