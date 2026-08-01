@@ -235,10 +235,10 @@ save_bundle(fig4, "cmtw-v14-fig4-lifecycle-correctness", 183, 68)
 # Figure 5: contract architecture -> generator-dependent answer boundary.
 # -----------------------------------------------------------------------------
 lane5 <- tibble::tribble(
-  ~y, ~input, ~op, ~responsibility, ~dark, ~light,
-  70, "Assertion",      "I", "admission", pal[["teal"]],  pal[["teal_light"]],
-  48, "Forget",         "C", "cascade", pal[["ochre"]], pal[["ochre_light"]],
-  26, "As-of query",    "T", "valid-time", pal[["navy"]],  "#DCE5EC"
+  ~y, ~input, ~input_x, ~op, ~responsibility, ~dark, ~light,
+  70, "Assertion",       8.0, "I", "admission", pal[["teal"]],  pal[["teal_light"]],
+  48, "Forget",          8.0, "C", "cascade", pal[["ochre"]], pal[["ochre_light"]],
+  26, "As-of query",     3.5, "T", "valid-time", pal[["navy"]],  "#DCE5EC"
 )
 route5 <- bind_rows(lapply(seq_len(nrow(lane5)), function(i) {
   z <- lane5[i, ]
@@ -298,7 +298,7 @@ p5a <- ggplot() +
            fill = pal[["navy"]], colour = pal[["navy"]], stroke = 0) +
   geom_text(data = lane5, aes(x = 35, y = y, label = op),
              family = "Arial", fontface = "bold", size = 3.35, colour = "white") +
-  geom_text(data = lane5, aes(x = 8, y = y + 5.3, label = input),
+  geom_text(data = lane5, aes(x = input_x, y = y + 5.3, label = input),
              hjust = 0, family = "Arial", fontface = "bold", size = 2.42,
             colour = pal[["slate"]]) +
   geom_text(data = lane5,
@@ -466,10 +466,10 @@ p5b <- ggplot() +
   )
 
 fig5 <- (p5a | p5b) + plot_layout(widths = c(113, 70))
-save_bundle(fig5, "cmtw-v26-fig5-contract-portability", 183, 68)
+save_bundle(fig5, "cmtw-v27-fig5-contract-portability", 183, 68)
 
 contract_text <- c(
-  "CMTW v26 figure contract",
+  "CMTW v27 figure contract",
   "========================",
   "Fig. 4 core conclusion: prompt-only identity admission has no usable operating point, and full lifecycle correctness requires I, C, and T.",
   "Fig. 4 panel map: (a) enlarged admission operating plane; (b) semantic error matrix; (c) full-width exact I/C/T obligation audit.",
@@ -479,8 +479,9 @@ contract_text <- c(
   "Backend: R only (ggplot2 + patchwork).",
   "Output: 183-mm vector PDF/SVG plus 600-dpi TIFF and review PNG.",
   "Integrity: all marks are generated from frozen CSV source tables; no HTML drawing code is used.",
+  "Layout-only revision from v26: the As-of query label is shifted left to clear the T operator node; data and encodings are unchanged.",
   "Reviewer risk: Fig. 4c is a deterministic completeness audit, not an interaction or population estimate; Fig. 5b exposes rather than removes generator dependence."
 )
-writeLines(contract_text, file.path(base_dir, "figure-contract-v26.txt"), useBytes = TRUE)
+writeLines(contract_text, file.path(base_dir, "figure-contract-v27.txt"), useBytes = TRUE)
 
-cat("Built CMTW v26 Fig. 5 from frozen source tables in", base_dir, "\n")
+cat("Built CMTW v27 Fig. 5 from frozen source tables in", base_dir, "\n")

@@ -1,4 +1,4 @@
-CMTW v4 — PVLDB supplemental artifact (release 1.2)
+CMTW v4 — PVLDB supplemental artifact (release 1.3)
 =====================================================
 
 Purpose
@@ -140,6 +140,9 @@ Figure reproduction from frozen files
 The exact adopted files are under paper-figures/.  Regenerate their current
 visual encodings from frozen CSVs and self-contained source with:
 
+The submission uses cmtw-v27-fig5-contract-portability.*; the v26 files are
+retained only as the traceable Figure 5 snapshot from release 1.2.
+
   Rscript scripts/build_cmtw_fig3_submission.R
   powershell -ExecutionPolicy Bypass -File scripts/render_cmtw_fig4_submission.ps1
   Rscript scripts/build_cmtw_fig5_submission.R
@@ -176,7 +179,7 @@ Release note
 Python source code is released under MIT; original synthetic data and result
 tables are released under CC0-1.0.  The immutable submission snapshot is:
 
-  https://github.com/flytoee-rgb/cmtw-pvldb-artifact/releases/tag/v1.2-pvldb-submission
+  https://github.com/flytoee/cmtw-pvldb-artifact/releases/tag/v1.3-pvldb-submission
 
 Historical workspace paths recorded in docs/reproducibility-log-v4.txt are
 preserved verbatim.  The packaged mapping is results/v4/ -> results/ and

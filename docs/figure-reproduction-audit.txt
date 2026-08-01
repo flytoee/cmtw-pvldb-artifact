@@ -30,10 +30,12 @@ Figure 5
 --------
 Adopted source: scripts/build_cmtw_fig5_submission.R
 Adopted PDF SHA-256:
-  8450048f648651f2092a09b38dd992a7f7dfdbd4a9b9588a54d65055afe913d6
+  9cf562677f448a3e993f88516b435d10ec4e578d66c5395b304c74af7a6eab8d
 Reproduced PDF SHA-256 (render timestamp differs):
-  e0caf407f5904111b39d8d08e9df972451343531baac7ba361bb599d46e8c968
+  75303cba3d45da934aba6f6b0caed2cb889dbc2d79a4d3289889b80bb6b3ffa1
 SVG/PNG/TIFF byte identity: PASS
+Layout-only v27 revision: ``As-of query'' clears the T operator node; frozen
+data, encodings, panel dimensions, and all numerical marks are unchanged.
 
 Conclusion
 ----------
