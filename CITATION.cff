@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this artifact, please cite the associated CMTW Vision paper."
 title: "CMTW v4 PVLDB Supplemental Artifact"
-version: "1.1-pvldb-submission"
-date-released: 2026-07-27
+version: "1.2-pvldb-submission"
+date-released: 2026-08-01
 type: software
 authors:
   - family-names: Qu
@@ -16,5 +16,5 @@ authors:
   - family-names: Luan
     given-names: Qifu
 repository-code: "https://github.com/flytoee-rgb/cmtw-pvldb-artifact"
-url: "https://github.com/flytoee-rgb/cmtw-pvldb-artifact/releases/tag/v1.1-pvldb-submission"
+url: "https://github.com/flytoee-rgb/cmtw-pvldb-artifact/releases/tag/v1.2-pvldb-submission"
 license: MIT

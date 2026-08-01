@@ -1,7 +1,7 @@
 CMTW v4 supplemental-artifact static audit
 ============================================
 
-Packaging date: 2026-07-27 (Asia/Shanghai)
+Packaging date: 2026-08-01 (Asia/Shanghai)
 
 Scope:
 - accepted synthetic manifests only;
@@ -29,6 +29,12 @@ Release audit:
 - generated JSON retains its existing CC0-1.0 metadata;
 - Python source license: MIT, recorded in LICENSE.txt;
 - stable tagged snapshot:
-  https://github.com/flytoee-rgb/cmtw-pvldb-artifact/releases/tag/v1.1-pvldb-submission;
+  https://github.com/flytoee-rgb/cmtw-pvldb-artifact/releases/tag/v1.2-pvldb-submission;
 - release ZIP uses POSIX "/" member paths for Windows, Linux, and macOS
   extraction.
+
+Figure audit:
+- exact adopted Figure 3/4/5 files are included under paper-figures/;
+- the current R and self-contained HTML sources are included under scripts/;
+- adopted and reproduced Figure 4 rasterize to the same 150-dpi SHA-256;
+- figure scripts consume only frozen figure-source-data/ tables.

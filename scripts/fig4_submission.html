@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CMTW Figure 4 - lifecycle correctness</title>
+<style>
+  @page { size: 183mm 60mm; margin: 0; }
+  html, body { width: 183mm; height: 60mm; margin: 0; padding: 0; overflow: hidden; background: #fff; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  svg { display: block; width: 183mm; height: 60mm; font-family: Arial, Helvetica, sans-serif; }
+</style>
+</head>
+<body>
+<svg id="figure" viewBox="0 0 183 60" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-label="Three-panel lifecycle correctness evaluation"></svg>
+<script>
+const NS = "http://www.w3.org/2000/svg";
+const svg = document.getElementById("figure");
+const C = {
+  ink: "#202A35", slate: "#667482", grid: "#E3E8EB", faint: "#F3F5F6",
+  teal: "#148C8F", tealLight: "#D7EEEE", coral: "#CC4D4E",
+  coralLight: "#F4DCDC", ochre: "#D9951E", navy: "#355C7D",
+  greenDark: "#08745A", white: "#FFFFFF"
+};
+const MODELS = {
+  MI: {name: "Mistral 14B", color: C.teal, dodge: -0.012},
+  LF: {name: "LFM2 24B", color: C.ochre, dodge: 0.012},
+  LL: {name: "Llama MoE", color: C.navy, dodge: 0}
+};
+
+function el(tag, attrs = {}, parent = svg) {
+  const n = document.createElementNS(NS, tag);
+  Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+  parent.appendChild(n);
+  return n;
+}
+function group(x) { return el("g", {transform: `translate(${x},0)`}); }
+function text(parent, x, y, str, attrs = {}) {
+  const t = el("text", Object.assign({x, y, fill: C.ink, "font-size": 2.05}, attrs), parent);
+  t.textContent = str;
+  return t;
+}
+function multi(parent, x, y, lines, attrs = {}, dy = 2.25) {
+  const t = el("text", Object.assign({x, y, fill: C.ink, "font-size": 1.85}, attrs), parent);
+  lines.forEach((line, i) => {
+    const s = el("tspan", {x, dy: i === 0 ? 0 : dy}, t);
+    s.textContent = line;
+  });
+  return t;
+}
+function panelTag(parent, letter) {
+  text(parent, 0.8, 4.1, letter, {"font-size": 3.2, "font-weight": 700});
+}
+function diamond(parent, x, y, r, fill) {
+  return el("path", {d: `M ${x} ${y-r} L ${x+r} ${y} L ${x} ${y+r} L ${x-r} ${y} Z`,
+    fill, stroke: C.ink, "stroke-width": 0.22}, parent);
+}
+function haloText(parent, x, y, str, attrs = {}) {
+  return text(parent, x, y, str, Object.assign({
+    "paint-order": "stroke", stroke: C.white, "stroke-width": 0.7,
+    "stroke-linejoin": "round"
+  }, attrs));
+}
+
+// ---------------------------------------------------------------------------
+// a | Exact seed-outcome tiles. No jitter, density estimate, or CI inference.
+// ---------------------------------------------------------------------------
+(function() {
+  const g = group(0); panelTag(g, "a");
+  const models = ["MI","LF","LL"];
+  const safe = {
+    MI:[0.5,1,1,0.5,0.5,1,0.5,0.5,0.5,1,1,0.5,0.5,1,0.5,0.5,0.5,1,1,0.5],
+    LF:[0.5,0,0,0,0,0,0,0,0.5,0,0,0,0,0,0,0,0.5,0,0,0],
+    LL:Array(20).fill(1)
+  };
+  const recall = {MI:Array(20).fill(1), LF:Array(20).fill(1), LL:Array(20).fill(0)};
+  const xRecall=9.0, xSafe=31.2, xJoint=55.0;
+  const yRows=[12.2,28.0,43.8], cellW=1.62, cellH=2.15, gapX=0.22, gapY=0.28;
+  const color=v => v===1?C.teal:(v===0.5?C.ochre:C.coral);
+  const avg=a => 100*a.reduce((s,v)=>s+v,0)/a.length;
+
+  multi(g,xRecall+8.3,6.4,["contamination","recall"],{"font-size":1.78,"font-weight":700,"text-anchor":"middle"},2.0);
+  multi(g,xSafe+8.3,6.4,["safe-write","acceptance"],{"font-size":1.78,"font-weight":700,"text-anchor":"middle"},2.0);
+  multi(g,xJoint,6.4,["joint","target"],{"font-size":1.68,"font-weight":700,"text-anchor":"middle"},2.0);
+
+  function tileBlock(values,x0,y0) {
+    values.forEach((v,i)=>{
+      const col=i%10, row=Math.floor(i/10);
+      el("rect",{x:x0+col*(cellW+gapX),y:y0+row*(cellH+gapY),width:cellW,height:cellH,
+        rx:0.18,fill:color(v),stroke:C.white,"stroke-width":0.12},g);
+    });
+  }
+
+  models.forEach((m,i)=>{
+    const y=yRows[i], r=recall[m], s=safe[m];
+    text(g,6.4,y+2.9,m,{"font-size":2.25,"font-weight":700,"text-anchor":"end"});
+    tileBlock(r,xRecall,y); tileBlock(s,xSafe,y);
+    const rp=avg(r), sp=avg(s), joint=rp>=95&&sp>=95;
+    text(g,xRecall+8.3,y+7.35,`${rp.toFixed(rp%1?1:0)}%`,{"font-size":1.72,"font-weight":700,"text-anchor":"middle",fill:rp>=95?C.greenDark:C.coral});
+    text(g,xSafe+8.3,y+7.35,`${sp.toFixed(sp%1?1:0)}%`,{"font-size":1.72,"font-weight":700,"text-anchor":"middle",fill:sp>=95?C.greenDark:C.coral});
+    el("circle",{cx:xJoint,cy:y+2.55,r:2.15,fill:joint?C.tealLight:C.coralLight,stroke:joint?C.teal:C.coral,"stroke-width":0.28},g);
+    text(g,xJoint,y+3.25,joint?"OK":"x",{"font-size":2.3,"font-weight":700,"text-anchor":"middle",fill:joint?C.greenDark:C.coral});
+  });
+
+  const legend=[{x:11,v:0,label:"failed"},{x:24,v:0.5,label:"partial"},{x:38,v:1,label:"passed"}];
+  legend.forEach(d=>{
+    el("rect",{x:d.x,y:56.1,width:2.2,height:1.8,rx:0.18,fill:color(d.v)},g);
+    text(g,d.x+3.0,57.55,d.label,{"font-size":1.5,fill:C.slate});
+  });
+  text(g,57.0,59.0,"20 exact seeds / metric",{"font-size":1.45,"text-anchor":"end",fill:C.slate});
+})();
+
+// ---------------------------------------------------------------------------
+// b | Semantic failure matrix with grouped input obligations.
+// ---------------------------------------------------------------------------
+(function() {
+  const g = group(61); panelTag(g, "b");
+  const vals = [[0,0,12,0],[0,0,20,17],[20,20,0,0]];
+  const rows = ["MI","LF","LL"], cols = ["D","G","R","S"];
+  const x0 = 10.0, y0 = 15.0, cw = 8.0, ch = 7.2, gx = 0.75, gy = 4.1;
+  const red = v => {
+    const t=v/20, a=[243,245,246], b=[204,77,78];
+    return `rgb(${a.map((q,i)=>Math.round(q+(b[i]-q)*t)).join(",")})`;
+  };
+  text(g, x0+8.4, 7.0, "must quarantine", {"font-size":1.65,"font-weight":700,"text-anchor":"middle",fill:C.slate});
+  text(g, x0+25.9, 7.0, "must admit", {"font-size":1.65,"font-weight":700,"text-anchor":"middle",fill:C.slate});
+  el("path", {d:`M ${x0} 9 L ${x0} 8.2 L ${x0+16.75} 8.2 L ${x0+16.75} 9`,fill:"none",stroke:C.slate,"stroke-width":0.20}, g);
+  el("path", {d:`M ${x0+17.5} 9 L ${x0+17.5} 8.2 L ${x0+34.25} 8.2 L ${x0+34.25} 9`,fill:"none",stroke:C.slate,"stroke-width":0.20}, g);
+  cols.forEach((c,j)=>text(g,x0+j*(cw+gx)+cw/2,12.1,c,{"font-size":2.0,"font-weight":700,"text-anchor":"middle"}));
+  rows.forEach((r,i)=>{
+    const y=y0+i*(ch+gy);
+    text(g,8.1,y+ch/2+0.65,r,{"font-size":2.15,"font-weight":700,"text-anchor":"end"});
+    vals[i].forEach((v,j)=>{
+      const x=x0+j*(cw+gx);
+      el("rect",{x,y,width:cw,height:ch,fill:red(v),stroke:C.white,"stroke-width":0.42},g);
+      text(g,x+cw/2,y+ch/2+0.72,String(v),{"font-size":2.25,"font-weight":700,"text-anchor":"middle",fill:v>=10?C.white:C.slate});
+    });
+  });
+  const defs=el("defs",{},g), grad=el("linearGradient",{id:"errorRampV18",x1:0,y1:0,x2:1,y2:0},defs);
+  el("stop",{offset:"0%","stop-color":C.faint},grad); el("stop",{offset:"100%","stop-color":C.coral},grad);
+  text(g,27.0,51.8,"errors / 20",{"font-size":1.7,"text-anchor":"middle",fill:C.slate});
+  el("rect",{x:16.0,y:53.0,width:22.0,height:1.8,fill:"url(#errorRampV18)",stroke:C.slate,"stroke-width":0.15},g);
+  [0,10,20].forEach(v=>text(g,16+22*v/20,57.0,String(v),{"font-size":1.55,"text-anchor":"middle",fill:C.slate}));
+  text(g,27.0,59.0,"D direct | G gradual | R revision | S safe",{"font-size":1.42,"text-anchor":"middle",fill:C.slate});
+})();
+
+// ---------------------------------------------------------------------------
+// c | I/C/T states and four obligation columns. No decorative row frame.
+// ---------------------------------------------------------------------------
+(function() {
+  const g = group(111); panelTag(g, "c");
+  const rows = [
+    {cfg:[0,0,0],pass:[0,0,0,0],pct:0}, {cfg:[0,0,1],pass:[0,0,0,1],pct:25},
+    {cfg:[0,1,0],pass:[0,0,1,0],pct:25}, {cfg:[0,1,1],pass:[0,0,1,1],pct:50},
+    {cfg:[1,0,0],pass:[1,1,0,0],pct:50}, {cfg:[1,0,1],pass:[1,1,0,1],pct:75},
+    {cfg:[1,1,0],pass:[1,1,1,0],pct:75}, {cfg:[1,1,1],pass:[1,1,1,1],pct:100}
+  ];
+  const chipX=[2.0,5.6,9.2], chipW=3.0;
+  const matX=[15.0,26.2,37.4,48.6], matW=10.0;
+  const y0=12.2, rh=3.7, step=5.0, pctX=70.7;
+  ["I","C","T"].forEach((s,i)=>text(g,chipX[i]+chipW/2,8.7,s,{"font-size":1.9,"font-weight":700,"text-anchor":"middle"}));
+  multi(g,matX[0]+matW/2,7.6,["persona"],{"font-size":1.72,"font-weight":700,"text-anchor":"middle"});
+  multi(g,matX[1]+matW/2,7.6,["pollution"],{"font-size":1.72,"font-weight":700,"text-anchor":"middle"});
+  multi(g,matX[2]+matW/2,6.5,["recorded","closure"],{"font-size":1.72,"font-weight":700,"text-anchor":"middle"},2.0);
+  multi(g,matX[3]+matW/2,6.5,["valid-time","selection"],{"font-size":1.72,"font-weight":700,"text-anchor":"middle"},2.0);
+  rows.forEach((r,i)=>{
+    const y=y0+i*step;
+    r.cfg.forEach((v,j)=>{
+      el("rect",{x:chipX[j],y,width:chipW,height:rh,rx:0.45,
+        fill:v?C.navy:C.white,stroke:v?C.navy:"#B9B9B9","stroke-width":0.38},g);
+      text(g,chipX[j]+chipW/2,y+2.55,String(v),{"font-size":1.82,"font-weight":v?700:400,"text-anchor":"middle",fill:v?C.white:"#999999"});
+    });
+    r.pass.forEach((v,j)=>{
+      el("rect",{x:matX[j],y,width:matW,height:rh,fill:v?C.teal:C.coralLight,stroke:C.white,"stroke-width":0.34},g);
+      if(!v) text(g,matX[j]+matW/2,y+2.48,"-",{"font-size":1.9,"text-anchor":"middle",fill:"#BA8888"});
+    });
+    text(g,pctX,y+2.55,`${r.pct}%`,{"font-size":1.92,"font-weight":r.pct===100?700:400,"text-anchor":"end",fill:r.pct===100?C.greenDark:C.ink});
+  });
+  text(g,2.0,56.1,"I: persona + pollution",{"font-size":1.42,fill:C.slate});
+  text(g,26.0,56.1,"C: recorded closure",{"font-size":1.42,fill:C.slate});
+  text(g,48.0,56.1,"T: valid-time",{"font-size":1.42,fill:C.slate});
+})();
+</script>
+</body>
+</html>

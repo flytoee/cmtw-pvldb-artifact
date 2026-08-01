@@ -1,4 +1,4 @@
-CMTW v4 — PVLDB supplemental artifact (release 1.1)
+CMTW v4 — PVLDB supplemental artifact (release 1.2)
 =====================================================
 
 Purpose
@@ -46,6 +46,10 @@ figure-source-data/
   CSV tables behind Figures 3–5.  Versioned intermediate CSVs are retained so
   the final adopted visual encodings can be audited against earlier exports.
 
+paper-figures/
+  Exact adopted submission files for Figures 3–5.  Figure 4 is distributed as
+  its adopted vector PDF plus its self-contained HTML/SVG source in scripts/.
+
 docs/
   Pre-registration, feasibility audit, terminology/figure contracts, status,
   and the command-level reproducibility log.
@@ -62,9 +66,10 @@ CITATION.cff
 Environment
 -----------
 Deterministic contract generation and evaluation use Python's standard library.
-The figure scripts additionally require numpy and matplotlib.  The release was
-packaging-tested with Python 3.12.10, numpy 2.4.6, and matplotlib 3.10.8; these
-versions are pinned in requirements.txt.  Local generation uses the
+The historical figure scripts additionally require numpy and matplotlib; these
+versions are pinned in requirements.txt.  The adopted submission figures use
+R 4.5.3 and the packages listed in R-packages.txt, plus Chrome or Edge for the
+self-contained Figure 4 HTML.  Local generation uses the
 OpenAI-compatible LM Studio endpoint:
 
   http://127.0.0.1:1234
@@ -132,17 +137,27 @@ Figure 5 contract completeness and generator adherence:
 
 Figure reproduction from frozen files
 -------------------------------------
-Install only the plotting dependencies, then regenerate the paper figures:
+The exact adopted files are under paper-figures/.  Regenerate their current
+visual encodings from frozen CSVs and self-contained source with:
+
+  Rscript scripts/build_cmtw_fig3_submission.R
+  powershell -ExecutionPolicy Bypass -File scripts/render_cmtw_fig4_submission.ps1
+  Rscript scripts/build_cmtw_fig5_submission.R
+
+These commands perform no inference, data generation, or statistical
+re-estimation.  They write to reproduced/paper-figures/.  R-generated SVG, PNG,
+and TIFF files reproduce byte-for-byte in the audited environment; PDF metadata
+contains a render timestamp, so PDF byte hashes may differ although rendered
+content is identical.  The Figure 4 audit renders adopted and reproduced PDFs at
+150 dpi and obtains identical raster SHA-256 values; its source is
+scripts/fig4_submission.html.
+
+The older Python commands remain available to audit historical encodings and
+recomputed source tables; they are not the adopted submission layout:
 
   python -m pip install -r requirements.txt
   python scripts/plot_cmtw_v5_figures.py
   python scripts/plot_cmtw_v7_figure_adoptions.py
-
-These commands perform no inference, data generation, or statistical
-re-estimation.  They read results/ and figure-source-data/ and write vector PDF
-and SVG files, plus inspection rasters, under reproduced/figures/.  The first
-script also exports recomputed CSV tables under
-reproduced/figure-source-data/.
 
 Integrity and scope audits
 --------------------------
@@ -161,7 +176,7 @@ Release note
 Python source code is released under MIT; original synthetic data and result
 tables are released under CC0-1.0.  The immutable submission snapshot is:
 
-  https://github.com/flytoee-rgb/cmtw-pvldb-artifact/releases/tag/v1.1-pvldb-submission
+  https://github.com/flytoee-rgb/cmtw-pvldb-artifact/releases/tag/v1.2-pvldb-submission
 
 Historical workspace paths recorded in docs/reproducibility-log-v4.txt are
 preserved verbatim.  The packaged mapping is results/v4/ -> results/ and

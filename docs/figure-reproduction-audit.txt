@@ -1,0 +1,43 @@
+CMTW submission-figure reproduction audit
+==========================================
+
+Audit date: 2026-08-01 (Asia/Shanghai)
+Inputs: frozen figure-source-data/ CSV tables and self-contained Figure 4 HTML
+Inference, training, data generation, and statistical re-estimation: none
+
+Figure 3
+--------
+Adopted source: scripts/build_cmtw_fig3_submission.R
+Adopted PDF SHA-256:
+  725ec005793e9c2880a8e783c35e4c1394d7a7cef659774d98aff3e6424b222c
+Reproduced PDF SHA-256 (render timestamp differs):
+  21f3a08a3c5c4ffdff8bb4746a17bd5c73e67839d4287da2dd177e2355bfd249
+SVG/PNG/TIFF byte identity: PASS
+
+Figure 4
+--------
+Adopted source: scripts/fig4_submission.html
+Renderer: scripts/render_cmtw_fig4_submission.ps1
+Adopted PDF SHA-256:
+  c02aaf182fd39b12867c2f11bf82467a90683e62e8b2543878c192c34febe072
+Reproduced PDF SHA-256 (render timestamp differs):
+  4ae5689c12683df943f5ad072a1a00d3251477dc4815438ef005ac1f16cda5bd
+Adopted and reproduced PDFs rendered at 150 dpi:
+  d125b1cac47abcfef0bb5fa759ba0ef01cb5fb0d75f5bdb35c6a24a06306bc0e
+Rendered-content identity: PASS
+
+Figure 5
+--------
+Adopted source: scripts/build_cmtw_fig5_submission.R
+Adopted PDF SHA-256:
+  8450048f648651f2092a09b38dd992a7f7dfdbd4a9b9588a54d65055afe913d6
+Reproduced PDF SHA-256 (render timestamp differs):
+  e0caf407f5904111b39d8d08e9df972451343531baac7ba361bb599d46e8c968
+SVG/PNG/TIFF byte identity: PASS
+
+Conclusion
+----------
+The artifact contains the exact adopted vector PDFs and the source needed to
+reproduce their current visual encodings.  Non-identical PDF byte hashes are
+limited to renderer metadata; deterministic alternative formats or rendered
+content match exactly.
