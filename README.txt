@@ -1,3 +1,37 @@
+CMTW reproducibility artifacts: ICDE DEFT and historical PVLDB
+=============================================================
+
+CURRENT ICDE ARTIFACT (2026-10-10)
+---------------------------------
+Paper: CMTW: Lifecycle-Sound Data Management for Long-Lived Companion Memory
+Release: https://github.com/flytoee/cmtw-pvldb-artifact/releases/tag/v2.0-icde-deft
+Download: https://github.com/flytoee/cmtw-pvldb-artifact/releases/download/v2.0-icde-deft/cmtw-icde-deft-artifact.zip
+
+For the new ICDE experiments, download the named ZIP above. It contains the
+frozen v6 synthetic inputs, pre-policy labels, raw local model responses,
+strong conventional database comparator, scope-epoch prototype, held-out
+admission tests, equal-fallback deletion tests, genuine summary/embedding
+fixtures, learned query-withdrawal concurrency traces, executed source
+snapshots, plots, command logs, SHA-256 manifests, and manuscript sources.
+The v7 paper in the ZIP is an availability-only revision; no experiment or
+scientific claim was changed for this release. AI-use disclosure awaits a
+separate author-approved manuscript update.
+
+ZIP size: 5,421,554 bytes
+ZIP SHA-256: 068950a391af0c064b48e6c18f4b9c1cf9a6d9cc2945c7eaef583a8754099587
+The ZIP contains 1,719 files and a per-file SHA256-MANIFEST.json.
+Code: existing MIT license. Original synthetic data/results: existing CC0
+dedication. No model weights, borrowed paper PDFs or real participant data.
+
+The repository file tree below remains the historical PVLDB artifact.
+GitHub's automatic Source code ZIP/tar.gz downloads snapshot that legacy tree;
+they are NOT the new ICDE evidence package. Use cmtw-icde-deft-artifact.zip.
+Do not pool the new GLM/Nomic experiment results with old model results.
+
+HISTORICAL PVLDB ARTIFACT - documentation below retained
+-------------------------------------------------------
+Release: https://github.com/flytoee/cmtw-pvldb-artifact/releases/tag/v1.4-pvldb-submission
+
 CMTW PVLDB supplemental artifact
 ================================
 
