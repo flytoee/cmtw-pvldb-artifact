@@ -1,16 +1,17 @@
 CMTW ICDE DEFT reproducibility release
 =====================================
 
-Tag: v2.0-icde-deft
-Release: https://github.com/flytoee/cmtw-pvldb-artifact/releases/tag/v2.0-icde-deft
-Artifact: https://github.com/flytoee/cmtw-pvldb-artifact/releases/download/v2.0-icde-deft/cmtw-icde-deft-artifact.zip
+Tag: v2.1-icde-deft
+Release: https://github.com/flytoee/cmtw-pvldb-artifact/releases/tag/v2.1-icde-deft
+Artifact: https://github.com/flytoee/cmtw-pvldb-artifact/releases/download/v2.1-icde-deft/cmtw-icde-deft-artifact.zip
 
-Bytes: 5421554
-SHA-256: 068950a391af0c064b48e6c18f4b9c1cf9a6d9cc2945c7eaef583a8754099587
-Payload files including current manifest: 1719
+Bytes: 5787578
+SHA-256: 42db3d27135dd0443a425b8949658284a485a8cbcc5a186ff1cc62294250b366
+Payload files including current manifest: 1733
 
-The artifact contains frozen v6 experiments plus an availability-only v7
-manuscript revision. CRC and all payload hashes were checked locally before
+The artifact contains frozen v6 experiments plus bounded v7 review corrections.
+Earlier manuscripts remain in historical/v7-20261010 and release v2.0.
+CRC and all payload hashes were checked locally before
 upload. Historical PVLDB releases are retained and are not the source of
 these new results. The new ZIP, not GitHub's automatic source archives,
 contains the ICDE experimental code, data, raw responses and traces.
